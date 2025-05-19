@@ -21,13 +21,14 @@
         }
 
         .project-card {
-            transition: transform 800ms cubic-bezier(0.34, 1.56, 0.64, 1);
-            will-change: transform;
+            transition: transform 800ms cubic-bezier(0.34, 1.56, 0.64, 1), scale 800ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform, scale;
             width: 100%;
             max-width: 100%;
             overflow: hidden;
             position: relative;
             aspect-ratio: 1/1;
+            transform-origin: center center;
         }
 
         .project-card img {
@@ -203,27 +204,155 @@
         .project-card:hover .animated-gif {
             transform: scale(1.05);
         }
+
+        /* Custom positioning for Europa Drive GIF */
+        .project-card:nth-child(7) .animated-gif {
+            object-position: 30% center;
+        }
+
+        /* Custom styles for Traceroute GIF */
+        .project-card:nth-child(7) .animated-gif {
+            transform: scale(1);
+            object-position: left;
+        }
+        .project-card:nth-child(7):hover .animated-gif {
+            transform: scale(0.75);
+        }
+
+        /* Pure white background for SimuTrader */
+        .project-card:first-child .project-image-container {
+            background-color: #FFFFFF;
+        }
+
+        /* Custom styles for Satoshi Sailors GIF */
+        .project-card:nth-child(5) .animated-gif {
+            transform: scale(0.8);
+            object-position: center;
+        }
+        .project-card:nth-child(5):hover .animated-gif {
+            transform: scale(0.85);
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger-menu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+
+        .hamburger-icon {
+            width: 24px;
+            height: 2px;
+            background-color: currentColor;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-icon::before,
+        .hamburger-icon::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            background-color: currentColor;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-icon::before {
+            transform: translateY(-8px);
+        }
+
+        .hamburger-icon::after {
+            transform: translateY(8px);
+        }
+
+        .hamburger-menu.active .hamburger-icon {
+            background-color: transparent;
+        }
+
+        .hamburger-menu.active .hamburger-icon::before {
+            transform: rotate(45deg);
+        }
+
+        .hamburger-menu.active .hamburger-icon::after {
+            transform: rotate(-45deg);
+        }
+
+        .nav-dropdown {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 8px 0;
+            display: none;
+            z-index: 999;
+            min-width: 180px;
+            transform-origin: top right;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-dropdown.active {
+            display: block;
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .nav-dropdown .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-dropdown .nav-item:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+            transform: translateX(-4px);
+        }
+
+        .nav-dropdown .nav-item .arrow {
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: all 0.2s ease;
+        }
+
+        .nav-dropdown .nav-item:hover .arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Hide the original nav */
+        .header-right {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <canvas id="backgroundCanvas" class="background-canvas"></canvas>
-    <button id="darkModeToggle" class="dark-mode-toggle">
-        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="5"></circle>
-          <line x1="12" y1="1" x2="12" y2="3"></line>
-          <line x1="12" y1="21" x2="12" y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-          <line x1="1" y1="12" x2="3" y2="12"></line>
-          <line x1="21" y1="12" x2="23" y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-    </button>
-   
+    <div class="hamburger-menu">
+        <div class="hamburger-icon"></div>
+    </div>
+    <div class="nav-dropdown">
+        <a href="https://github.com/suislanchez" class="nav-item">WORK <span class="arrow">→</span></a>
+        <a href="about.html" class="nav-item">ABOUT <span class="arrow">→</span></a>
+        <a href="blog.html" class="nav-item">BLOG <span class="arrow">→</span></a>
+        <a href="assets/suisres03-2025.pdf" class="nav-item" target="_blank">CV <span class="arrow">→</span></a>
+    </div>
     <div class="container">
         <header>
             <div class="header-content">
@@ -235,19 +364,25 @@
                         </div>
                     </div>
                     <p class="intro-text">Hello! I'm Luis, a Software Developer at UC Berkeley, who's excited about on-chain security and economic freedom for the masses. Feel free to explore my page and click around!</p>
-
-                <nav class="header-right">
-                    <div class="nav-links">
-                        <a href="https://github.com/suislanchez" class="nav-item">WORK <span class="arrow">→</span></a>
-                        <a href="about.html" class="nav-item">ABOUT <span class="arrow">→</span></a>
-                        <a href="blog.html" class="nav-item">BLOG <span class="arrow">→</span></a>
-                        <a href="assets/suisres03-2025.pdf" class="nav-item" target="_blank">CV <span class="arrow">→</span></a>
-                    </div>
-                </nav>
+                </div>
             </div>
         </header>
 
         <main class="projects-grid">
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="assets/simutrader.png" alt="SimuTrader" class="png">
+                </div>
+                <div class="project-overlay">
+                    <h3>
+                        <a href="https://github.com/suislanchez/stock-sim-app" class="project-title">
+                            SimuTrader
+                            <span class="project-arrow">→</span>
+                        </a>
+                    </h3>
+                    <p>A simulated stock-trading educational platform, users starts with $10000 in virtual cash, trades real market data, and competes on a global leaderboard.</p>
+                </div>
+            </div>
             <div class="project-card">
                 <img src="assets/proper-bones.jpg" alt="Proper Bones">
                 <div class="project-overlay">
@@ -264,7 +399,7 @@
                 <img src="assets/hackathon.jpg" alt="hackathon">
                 <div class="project-overlay">
                     <h3>
-                        <a href="blog.html#prepalchemy" class="project-title">
+                        <a href="https://github.com/suislanchez/prepalchemy" class="project-title">
                             PrepAlchemy
                             <span class="project-arrow">→</span>
                         </a>
@@ -278,7 +413,7 @@
                     <img src="assets/duo.jpg" alt="duo">
                     <div class="project-overlay">
                         <h3>
-                            <a href="/duolingothrive" class="project-title">
+                            <a href="duolingo.html" class="project-title">
                                 Duolingo Thrive
                                 <span class="project-arrow">→</span>
                             </a>
@@ -300,7 +435,9 @@
                 </div>
             </div>
             <div class="project-card">
-                <img src="assets/satoshi-sailors.jpg" alt="Satoshi Sailors">
+                <div class="project-image-container">
+                    <img src="assets/satoshi-sailors.gif" alt="Satoshi Sailors Animation" class="animated-gif" loop>
+                </div>
                 <div class="project-overlay">
                     <h3>
                         <a href="https://solplay.de/sevenseas/index.html" class="project-title">
@@ -327,7 +464,9 @@
                 </div>
             </div>
             <div class="project-card">
-                <img src="assets/blockchain.jpg" alt="blockchain">
+                <div class="project-image-container">
+                    <img src="assets/europa.gif" alt="Europa Drive Animation" class="animated-gif" loop>
+                </div>
                 <div class="project-overlay">
                     <h3>   
                         <a href="blockchainbreakdown.html" class="project-title">
@@ -335,7 +474,7 @@
                             <span class="project-arrow">→</span>
                         </a>
                     </h3>
-                    <p> Cryptographically secure file sharing database program. WORK IN PROGRESS!!  </p>
+                    <p> Cryptographically secure file sharing database program backend. (Dropbox clone) </p>
                 </div>
             </div>
             <div class="project-card">
@@ -367,6 +506,28 @@
         </div>
     </footer>
     <script>
+        // Hamburger Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const navDropdown = document.querySelector('.nav-dropdown');
+
+            if (hamburgerMenu && navDropdown) {
+                hamburgerMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    hamburgerMenu.classList.toggle('active');
+                    navDropdown.classList.toggle('active');
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!hamburgerMenu.contains(e.target) && !navDropdown.contains(e.target)) {
+                        hamburgerMenu.classList.remove('active');
+                        navDropdown.classList.remove('active');
+                    }
+                });
+            }
+        });
+
         const { spring } = motion;
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -383,13 +544,6 @@
             });
 
             headerContent.style.transition = `transform ${spring(0.6, 0.1)}`;
-        });
-
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const documentBody = document.body;
-      
-        darkModeToggle.addEventListener('click', () => {
-          documentBody.classList.toggle('dark-mode');
         });
 
         // Three.js Pixelated Pomeranian Animation
@@ -709,7 +863,8 @@
             constructor() {
                 this.cards = document.querySelectorAll('.project-card');
                 this.observer = new IntersectionObserver(this.handleIntersection.bind(this), {
-                    threshold: 0.1
+                    threshold: [0.1, 0.5, 0.9],
+                    rootMargin: '-10% 0px -10% 0px'
                 });
                 this.init();
             }
@@ -725,11 +880,21 @@
                 entries.forEach(entry => {
                     const card = entry.target;
                     const gif = card.querySelector('.animated-gif');
+                    
+                    // Handle GIF animation
                     if (gif) {
                         if (entry.isIntersecting) {
-                            // Restart the GIF when it comes into view
                             gif.src = gif.src;
                         }
+                    }
+
+                    // Handle scale animation
+                    if (entry.isIntersecting) {
+                        const ratio = entry.intersectionRatio;
+                        const scale = 1 + (ratio * 0.1); // Scale up to 1.1x when fully visible
+                        card.style.transform = `scale(${scale})`;
+                    } else {
+                        card.style.transform = 'scale(1)';
                     }
                 });
             }
