@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes | Luis' Folio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css">
+    <style>
+        .quotes-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .quote {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-left: 3px solid var(--accent-color);
+            background: var(--card-bg);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .quote:hover {
+            transform: translateX(10px);
+        }
+
+        .quote-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-author {
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            font-style: italic;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            position: absolute;
+            bottom: 1rem;
+            right: 1.5rem;
+        }
+
+        .quote:hover .quote-author {
+            opacity: 1;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-color);
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="backgroundCanvas" class="background-canvas"></canvas>
+    <button id="darkModeToggle" class="dark-mode-toggle">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+        <h1 class="page-title">quotes and corollaries</h1>
+        
+        <div class="quotes-container">
+            <div class="quote">
+                <p class="quote-text">"We must all suffer from one of two pains: the pain of discipline or the pain of regret."</p>
+                <p class="quote-author">- Jim Rohn</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"Expectation has no place in reality."</p>
+                <p class="quote-author">- Unknown</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"I've missed more than 9,000 shots in my career. I've lost almost 300 games. Twenty-six times I've been trusted to take the game-winning shot and missed. I've failed over and over and over again in my life. And that is why I succeed."</p>
+                <p class="quote-author">- Michael Jordan</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"You have to be true to yourself. And to be true to yourself you need a certain amount of freedom to express yourself. Without that you can achieve nothing."</p>
+                <p class="quote-author">- L.S.</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"See, your murderers come with smiles, they come as your friends, the people who've cared for you all of your life, and they always seem to come at a time when you're at your weakest and most in need of their help."</p>
+                <p class="quote-author">- Henry Hill</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"80% of outcomes stems from 20% of inputs or causes."</p>
+                <p class="quote-author">- Vilfredo Pareto</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"I'll start tomorrow = I'll quit today."</p>
+                <p class="quote-author">- Unknown</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"Your story may not have such a happy beginning but that does not make you who you are, it is the rest of it - who you choose to be."</p>
+                <p class="quote-author">- SoothSayer</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"In order to love who you are you cannot hate the experiences that shaped you."</p>
+                <p class="quote-author">- Andréa Dykstra</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"You could be the master of your fate. You could be the captain of your soul. But you have to realize that life is coming from you and not at you, and that takes time."</p>
+                <p class="quote-author">- Timothée Chalamet</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"Pessimism becomes a self-fulfilling prophecy; it reproduces itself by crippling our willingness to act. Does this make pessimism wrong? Not really. Optimism, after all, is a self-fulfilling prophecy, too."</p>
+                <p class="quote-author">- Howard Zinn</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"We hear what we want to hear."</p>
+                <p class="quote-author">- Unknown</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"You are not a drop in the ocean. You are the ocean in a drop."</p>
+                <p class="quote-author">- Rumi</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"I am bad, and that is good. I will never be good, and that's not bad. There's nobody I'd rather be, than me."</p>
+                <p class="quote-author">- Ralph</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"Everyone you meet is fighting a battle you know nothing about. Be kind. Always."</p>
+                <p class="quote-author">- Robin Williams</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"You don't know about real loss, 'cause it only occurs when you've loved something more than you love yourself. And I doubt you've ever dared to love anybody that much."</p>
+                <p class="quote-author">- Robin Williams</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"If every time someone ask you a question, and you have to say the right answer, your whole life is a test."</p>
+                <p class="quote-author">- Ye</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"To know thyself is the ultimate form of aggression."</p>
+                <p class="quote-author">- Marion J. Levy Jr.</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"Build a system that even a fool can use and only fools will use it."</p>
+                <p class="quote-author">- Edward A. Murphy Jr.</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"Nature always sides with the hidden flaw."</p>
+                <p class="quote-author">- Edward A. Murphy Jr.</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"Friends come and go, enemies accumulate."</p>
+                <p class="quote-author">- Arthur Bloch</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"Where you stand depends where you sit."</p>
+                <p class="quote-author">- Rufus Miles</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"Use yourself against you for your own good."</p>
+                <p class="quote-author">- Unknown</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                © 2025 Luis Sanchez
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/suislanchez" class="footer-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/suislanchez/" class="footer-link">LinkedIn</a>
+                <a href="mailto:luisanchez@berkeley.edu" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const documentBody = document.body;
+      
+        darkModeToggle.addEventListener('click', () => {
+            documentBody.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+</html>

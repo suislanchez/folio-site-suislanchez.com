@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Luis' Folio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/motion@10.16.4/dist/motion.js"></script>
+    <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css">
+    <style>
+        .name-link {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        .name-link:hover {
+            opacity: 0.8;
+        }
+
+        .project-card {
+            transition: transform 800ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 1/1;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: clamp(0.5rem, 2vw, 1rem);
+            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+            color: white;
+        }
+
+        .project-overlay h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: white;
+        }
+
+        .project-overlay p {
+            margin: 0;
+            font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+            line-height: 1.3;
+            max-height: 3.9em;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            color: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: clamp(1rem, 2vw, 2rem);
+            padding: clamp(1rem, 2vw, 2rem);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .project-card.small {
+            grid-column: span 1;
+        }
+
+        .project-card.medium {
+            grid-column: span 2;
+        }
+
+        .project-card.large {
+            grid-column: span 3;
+        }
+
+        @media (max-width: 768px) {
+            .project-card.medium,
+            .project-card.large {
+                grid-column: span 1;
+            }
+        }
+
+        .nav-item {
+            transition: transform 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: inline-block;
+        }
+
+        .nav-item:hover {
+            transform: translateX(5px);
+        }
+
+        .header-content {
+            transition: transform 1000ms cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .header-content:hover {
+            transform: scale(1.01);
+        }
+
+        /* Add responsive text sizing */
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+        }
+
+        .intro-text {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            line-height: 1.5;
+        }
+
+        .project-title {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            display: inline-block;
+            margin: 0;
+            color: white;
+            text-decoration: none;
+        }
+
+        .project-title:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-item {
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+        }
+
+        .footer-text, .footer-link {
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+        }
+
+        /* Animation Frame Styles */
+        .project-image-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+
+        .image-frames {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .image-frame {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            pointer-events: none;
+        }
+
+        .image-frame.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .test-card {
+            background: none;
+            min-height: 200px;
+        }
+
+        .test-card .project-image-container {
+            background: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Animated GIF Styles */
+        .animated-gif {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 0% center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .project-card:hover .animated-gif {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="backgroundCanvas" class="background-canvas"></canvas>
+    <button id="darkModeToggle" class="dark-mode-toggle">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
+   
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="name-container">
+                        <h1><a href="quotes.html" class="name-link">Luis Sanchez</a></h1>
+                        <div class="fluid-animation">
+                            <div class="fluid-blob"></div>
+                        </div>
+                    </div>
+                    <p class="intro-text">Hello! I'm Luis, a Software Developer at UC Berkeley, who's excited about on-chain security and economic freedom for the masses. Feel free to explore my page and click around!</p>
+
+                <nav class="header-right">
+                    <div class="nav-links">
+                        <a href="https://github.com/suislanchez" class="nav-item">WORK <span class="arrow">→</span></a>
+                        <a href="about.html" class="nav-item">ABOUT <span class="arrow">→</span></a>
+                        <a href="blog.html" class="nav-item">BLOG <span class="arrow">→</span></a>
+                        <a href="assets/suisres03-2025.pdf" class="nav-item" target="_blank">CV <span class="arrow">→</span></a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="projects-grid">
+            <div class="project-card">
+                <img src="assets/proper-bones.jpg" alt="Proper Bones">
+                <div class="project-overlay">
+                     <h3>
+        <a href="https://www.properbones.com/" class="project-title">
+            Proper Bones
+            <span class="project-arrow">→</span>
+        </a>
+    </h3>
+                    <p>A full-stack retail website for selling vintage furniture and decor upcycling. New listings weekly!</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/hackathon.jpg" alt="hackathon">
+                <div class="project-overlay">
+                    <h3>
+                        <a href="blog.html#prepalchemy" class="project-title">
+                            PrepAlchemy
+                            <span class="project-arrow">→</span>
+                        </a>
+                    </h3>
+                    
+                    <p>AI powered real time interview trainer, utilizing an empathic voice interface, analyazing speech prosody and vocal + facial expression to provide analytics and feedback on simulated interviews. </p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                    <img src="assets/duo.jpg" alt="duo">
+                    <div class="project-overlay">
+                        <h3>
+                            <a href="/duolingothrive" class="project-title">
+                                Duolingo Thrive
+                                <span class="project-arrow">→</span>
+                            </a>
+                        </h3>
+    
+                        <p>My experience at the Duolingo thrive internship Summer 2024! </p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/ngram.jpg" alt="Ngram">
+                <div class="project-overlay">
+                    <h3>
+                        <a href="https://github.com/suislanchez/n-Wordnet" class="project-title">
+                           n-Wordnet
+                            <span class="project-arrow">→</span>
+                        </a>
+                    </h3>
+                    <p> View and compare the frequency of words and phrases in text over time. </p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/satoshi-sailors.jpg" alt="Satoshi Sailors">
+                <div class="project-overlay">
+                    <h3>
+                        <a href="https://solplay.de/sevenseas/index.html" class="project-title">
+                            Satoshi Sailors: Seven Seas
+                            <span class="project-arrow">→</span>
+                        </a>
+                    </h3>
+                    <p>Command your NFTs as avatars and ships to deploy, loot your enemies, and use your bounty to upgrade your destructive power. 
+                    </p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="assets/traceroute.gif" alt="Traceroute Animation" class="animated-gif" loop>
+                </div>
+                <div class="project-overlay">
+                    <h3>
+                        <a href="https://github.com/suislanchez/traceroute" class="project-title">
+                            IP Traceroute Visualizer
+                            <span class="project-arrow">→</span>
+                        </a>
+                    </h3>
+                    <p>A network tool for visualizing tracking IP routes </p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/blockchain.jpg" alt="blockchain">
+                <div class="project-overlay">
+                    <h3>   
+                        <a href="blockchainbreakdown.html" class="project-title">
+                            Europa Drive
+                            <span class="project-arrow">→</span>
+                        </a>
+                    </h3>
+                    <p> Cryptographically secure file sharing database program. WORK IN PROGRESS!!  </p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="assets/200w.gif" alt="Pacman Animation" class="animated-gif" loop>
+                </div>
+                <div class="project-overlay">
+                    <h3>   
+                        <a href="https://github.com/suislanchez/pacmanRec" class="project-title">
+                            Pacman Game Recreation
+                            <span class="project-arrow">→</span>
+                        </a>
+                    </h3>
+                    <p> The original 1980 game, programmed from scratch.  </p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                © 2025 Luis Sanchez
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/suislanchez" class="footer-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/suislanchez/" class="footer-link">LinkedIn</a>
+                <a href="mailto:luisanchez@berkeley.edu" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const { spring } = motion;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectCards = document.querySelectorAll('.project-card');
+            const navItems = document.querySelectorAll('.nav-item');
+            const headerContent = document.querySelector('.header-content');
+
+            projectCards.forEach(card => {
+                card.style.transition = `transform ${spring(0.5, 0.2)}`;
+            });
+
+            navItems.forEach(item => {
+                item.style.transition = `transform ${spring(0.4, 0.3)}`;
+            });
+
+            headerContent.style.transition = `transform ${spring(0.6, 0.1)}`;
+        });
+
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const documentBody = document.body;
+      
+        darkModeToggle.addEventListener('click', () => {
+          documentBody.classList.toggle('dark-mode');
+        });
+
+        // Three.js Pixelated Pomeranian Animation
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({
+            canvas: document.getElementById('bananaCanvas'),
+            alpha: true,
+            antialias: true
+        });
+        renderer.setSize(300, 300);
+
+        // Create pixelated Pomeranian body
+        const dogBodyGeometry = new THREE.BoxGeometry(0.6, 0.45, 0.3);
+        const dogBodyMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0xF5F5F5, // Off-white color
+            shininess: 0,
+            specular: 0x000000
+        });
+        const dogBody = new THREE.Mesh(dogBodyGeometry, dogBodyMaterial);
+        scene.add(dogBody);
+
+        // Add black outline to body
+        const dogBodyOutline = new THREE.EdgesGeometry(dogBodyGeometry);
+        const dogBodyOutlineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 2 });
+        const dogBodyOutlineMesh = new THREE.LineSegments(dogBodyOutline, dogBodyOutlineMaterial);
+        scene.add(dogBodyOutlineMesh);
+
+        // Add head with off-white color
+        const headGeometry = new THREE.BoxGeometry(0.375, 0.375, 0.3);
+        const headMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0xF5F5F5,
+            shininess: 0,
+            specular: 0x000000
+        });
+        const head = new THREE.Mesh(headGeometry, headMaterial);
+        head.position.set(0.45, 0.15, 0);
+        dogBody.add(head);
+
+        // Add black outline to head
+        const headOutline = new THREE.EdgesGeometry(headGeometry);
+        const headOutlineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 2 });
+        const headOutlineMesh = new THREE.LineSegments(headOutline, headOutlineMaterial);
+        head.add(headOutlineMesh);
+
+        // Add ears
+        const earGeometry = new THREE.BoxGeometry(0.15, 0.225, 0.075);
+        const earMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0xF5F5F5,
+            shininess: 0,
+            specular: 0x000000
+        });
+
+        const leftEar = new THREE.Mesh(earGeometry, earMaterial);
+        leftEar.position.set(-0.15, 0.3, 0);
+        leftEar.rotation.z = -Math.PI / 6;
+        head.add(leftEar);
+
+        // Add black outline to left ear
+        const leftEarOutline = new THREE.EdgesGeometry(earGeometry);
+        const leftEarOutlineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 2 });
+        const leftEarOutlineMesh = new THREE.LineSegments(leftEarOutline, leftEarOutlineMaterial);
+        leftEar.add(leftEarOutlineMesh);
+
+        const rightEar = new THREE.Mesh(earGeometry, earMaterial);
+        rightEar.position.set(0.15, 0.3, 0);
+        rightEar.rotation.z = Math.PI / 6;
+        head.add(rightEar);
+
+        // Add black outline to right ear
+        const rightEarOutline = new THREE.EdgesGeometry(earGeometry);
+        const rightEarOutlineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 2 });
+        const rightEarOutlineMesh = new THREE.LineSegments(rightEarOutline, rightEarOutlineMaterial);
+        rightEar.add(rightEarOutlineMesh);
+
+        // Add eyes
+        const eyeGeometry = new THREE.BoxGeometry(0.075, 0.075, 0.075);
+        const eyeMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0x000000,
+            shininess: 0,
+            specular: 0x000000
+        });
+
+        const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+        leftEye.position.set(-0.075, 0.075, 0.15);
+        head.add(leftEye);
+
+        const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+        rightEye.position.set(0.075, 0.075, 0.15);
+        head.add(rightEye);
+
+        // Add nose
+        const noseGeometry = new THREE.BoxGeometry(0.045, 0.045, 0.045);
+        const noseMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0x000000,
+            shininess: 0,
+            specular: 0x000000
+        });
+        const nose = new THREE.Mesh(noseGeometry, noseMaterial);
+        nose.position.set(0, 0.03, 0.15);
+        head.add(nose);
+
+        // Add legs
+        const legGeometry = new THREE.BoxGeometry(0.075, 0.225, 0.075);
+        const legMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0xF5F5F5,
+            shininess: 0,
+            specular: 0x000000
+        });
+
+        const frontLeftLeg = new THREE.Mesh(legGeometry, legMaterial);
+        frontLeftLeg.position.set(-0.15, -0.3, 0.075);
+        dogBody.add(frontLeftLeg);
+
+        // Add black outline to front left leg
+        const frontLeftLegOutline = new THREE.EdgesGeometry(legGeometry);
+        const frontLeftLegOutlineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 2 });
+        const frontLeftLegOutlineMesh = new THREE.LineSegments(frontLeftLegOutline, frontLeftLegOutlineMaterial);
+        frontLeftLeg.add(frontLeftLegOutlineMesh);
+
+        const frontRightLeg = new THREE.Mesh(legGeometry, legMaterial);
+        frontRightLeg.position.set(0.15, -0.3, 0.075);
+        dogBody.add(frontRightLeg);
+
+        // Add black outline to front right leg
+        const frontRightLegOutline = new THREE.EdgesGeometry(legGeometry);
+        const frontRightLegOutlineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 2 });
+        const frontRightLegOutlineMesh = new THREE.LineSegments(frontRightLegOutline, frontRightLegOutlineMaterial);
+        frontRightLeg.add(frontRightLegOutlineMesh);
+
+        const backLeftLeg = new THREE.Mesh(legGeometry, legMaterial);
+        backLeftLeg.position.set(-0.15, -0.3, -0.075);
+        dogBody.add(backLeftLeg);
+
+        // Add black outline to back left leg
+        const backLeftLegOutline = new THREE.EdgesGeometry(legGeometry);
+        const backLeftLegOutlineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 2 });
+        const backLeftLegOutlineMesh = new THREE.LineSegments(backLeftLegOutline, backLeftLegOutlineMaterial);
+        backLeftLeg.add(backLeftLegOutlineMesh);
+
+        const backRightLeg = new THREE.Mesh(legGeometry, legMaterial);
+        backRightLeg.position.set(0.15, -0.3, -0.075);
+        dogBody.add(backRightLeg);
+
+        // Add black outline to back right leg
+        const backRightLegOutline = new THREE.EdgesGeometry(legGeometry);
+        const backRightLegOutlineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 2 });
+        const backRightLegOutlineMesh = new THREE.LineSegments(backRightLegOutline, backRightLegOutlineMaterial);
+        backRightLeg.add(backRightLegOutlineMesh);
+
+        // Add fluffy tail
+        const tailGeometry = new THREE.BoxGeometry(0.225, 0.15, 0.15);
+        const tailMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0xF5F5F5,
+            shininess: 0,
+            specular: 0x000000
+        });
+        const tail = new THREE.Mesh(tailGeometry, tailMaterial);
+        tail.position.set(-0.375, 0, 0);
+        tail.rotation.z = Math.PI / 4;
+        dogBody.add(tail);
+
+        // Add black outline to tail
+        const tailOutline = new THREE.EdgesGeometry(tailGeometry);
+        const tailOutlineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 2 });
+        const tailOutlineMesh = new THREE.LineSegments(tailOutline, tailOutlineMaterial);
+        tail.add(tailOutlineMesh);
+
+        // Add lighting
+        const light = new THREE.DirectionalLight(0xffffff, 1.5);
+        light.position.set(1, 1, 1);
+        scene.add(light);
+
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+
+        camera.position.z = 4.5;
+
+        // Interactive controls
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+        let dogRotation = { x: 0, y: 0 };
+        let isAnimating = false;
+
+        const canvas = renderer.domElement;
+        canvas.addEventListener('mousedown', onMouseDown);
+        canvas.addEventListener('mousemove', onMouseMove);
+        canvas.addEventListener('mouseup', onMouseUp);
+        canvas.addEventListener('mouseleave', onMouseUp);
+
+        function onMouseDown(event) {
+            isDragging = true;
+            previousMousePosition = {
+                x: event.clientX,
+                y: event.clientY
+            };
+        }
+
+        function onMouseMove(event) {
+            if (!isDragging) return;
+
+            const deltaMove = {
+                x: event.clientX - previousMousePosition.x,
+                y: event.clientY - previousMousePosition.y
+            };
+
+            dogRotation.y += deltaMove.x * 0.01;
+            dogRotation.x += deltaMove.y * 0.01;
+
+            previousMousePosition = {
+                x: event.clientX,
+                y: event.clientY
+            };
+        }
+
+        function onMouseUp() {
+            isDragging = false;
+            if (!isAnimating) {
+                isAnimating = true;
+                // Add a playful bounce animation
+                const bounceAnimation = () => {
+                    dogBody.rotation.x = dogRotation.x + Math.sin(Date.now() * 0.01) * 0.1;
+                    dogBody.rotation.y = dogRotation.y + Math.cos(Date.now() * 0.01) * 0.1;
+                    if (Date.now() - startTime < 1000) {
+                        requestAnimationFrame(bounceAnimation);
+                    } else {
+                        isAnimating = false;
+                        dogBody.rotation.x = dogRotation.x;
+                        dogBody.rotation.y = dogRotation.y;
+                    }
+                };
+                const startTime = Date.now();
+                bounceAnimation();
+            }
+        }
+
+        // Mouse tracking for eyes
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            // Convert mouse position to normalized device coordinates (-1 to +1)
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Animation
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            if (!isDragging && !isAnimating) {
+                // Gentle floating animation when not interacting
+                dogBody.rotation.y += 0.005;
+                dogBody.position.y = Math.sin(Date.now() * 0.001) * 0.05;
+                
+                // Tail wagging animation
+                tail.rotation.z = Math.PI / 4 + Math.sin(Date.now() * 0.005) * 0.2;
+            }
+
+            // Make eyes follow mouse
+            const eyeMovementRange = 0.05; // Increased from 0.02 to 0.05 for more dramatic movement
+            leftEye.position.x = -0.075 + mouseX * eyeMovementRange;
+            leftEye.position.y = 0.075 + mouseY * eyeMovementRange;
+            rightEye.position.x = 0.075 + mouseX * eyeMovementRange;
+            rightEye.position.y = 0.075 + mouseY * eyeMovementRange;
+
+            // Make body follow mouse slightly
+            if (!isDragging && !isAnimating) {
+                const bodyMovementRange = 0.1; // Adjust this value to control body movement range
+                dogBody.rotation.y = THREE.MathUtils.lerp(
+                    dogBody.rotation.y,
+                    mouseX * bodyMovementRange,
+                    0.05
+                );
+                dogBody.rotation.x = THREE.MathUtils.lerp(
+                    dogBody.rotation.x,
+                    mouseY * bodyMovementRange * 0.5,
+                    0.05
+                );
+            }
+
+            // Apply user rotation
+            dogBody.rotation.x = THREE.MathUtils.lerp(dogBody.rotation.x, dogRotation.x, 0.1);
+            dogBody.rotation.y = THREE.MathUtils.lerp(dogBody.rotation.y, dogRotation.y, 0.1);
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const canvas = renderer.domElement;
+            const width = canvas.clientWidth;
+            const height = canvas.clientHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        });
+    </script>
+
+    <!-- Project Card Animation Controller -->
+    <script>
+        // GIF Looping Handler
+        function setupGifLooping() {
+            const gifs = document.querySelectorAll('.animated-gif');
+            gifs.forEach(gif => {
+                gif.addEventListener('load', function() {
+                    // Reset the GIF when it ends
+                    this.addEventListener('ended', function() {
+                        this.src = this.src;
+                    });
+                });
+            });
+        }
+
+        class ProjectCardAnimator {
+            constructor() {
+                this.cards = document.querySelectorAll('.project-card');
+                this.observer = new IntersectionObserver(this.handleIntersection.bind(this), {
+                    threshold: 0.1
+                });
+                this.init();
+            }
+
+            init() {
+                this.cards.forEach(card => {
+                    this.observer.observe(card);
+                });
+                setupGifLooping();
+            }
+
+            handleIntersection(entries) {
+                entries.forEach(entry => {
+                    const card = entry.target;
+                    const gif = card.querySelector('.animated-gif');
+                    if (gif) {
+                        if (entry.isIntersecting) {
+                            // Restart the GIF when it comes into view
+                            gif.src = gif.src;
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialize the animator when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectCardAnimator = new ProjectCardAnimator();
+        });
+    </script>
+</body>
+</html>

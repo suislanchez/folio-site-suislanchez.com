@@ -1,0 +1,820 @@
+body {
+   font-family: "San Francisco";
+   margin: 0;
+   padding: 0;
+   background: #ffffff;
+   color: #000000;
+}
+
+.container {
+   max-width: 1000px;
+   margin: 0 auto;
+   padding: 4rem 2rem;
+}
+
+.header-content {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   margin-bottom: 4rem;
+}
+
+
+.header-left h1 {
+   font-size: 6rem;
+   font-weight: 600;
+   margin: 0;
+   margin-bottom: 1rem;
+}
+
+.intro-text {
+   max-width: 500px;
+   line-height: 1.8;
+   color: #292828;
+   margin-bottom: 2rem;
+   font-size: 1.05rem; /* Increased from default */
+   font-family: century-gothic, sans-serif;
+}
+
+.header-right {
+   align-self: flex-start;
+}
+
+.nav-links {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   font-size: 2rem;
+}
+
+.nav-item {
+   text-decoration: none;
+   color: #333;
+   font-size: 2rem; /* Increased from 1.2rem */
+   font-weight: 400;
+   letter-spacing: 0.5px;
+   transition: opacity 0.2s ease;
+}
+
+.arrow {
+   opacity: 0;
+   transform: translateX(-10px);
+   transition: all 0.3s ease;
+}
+
+.nav-item:hover .arrow {
+   opacity: 1;
+   transform: translateX(0);
+}
+
+.projects-grid {
+   display: grid;
+   grid-template-columns: repeat(12, 1fr);
+   gap: 3rem;
+}
+
+.project-card {
+   position: sticky;
+   overflow:   hidden;
+   border-radius: 10px;
+   font-family: century-gothic, sans-serif;
+}
+.project-overlay p {
+   margin: 0 auto;
+   line-height: 1.6;
+   color: #666;
+   text-align: left;
+   padding: 0rem;
+   max-width: 90%;
+}
+
+.project-card.large {
+   grid-column: span 8;
+   aspect-ratio: 16/9;
+}
+
+.project-card.medium {
+   grid-column: span 6;
+   aspect-ratio: 4/3;
+}
+
+.project-card.small {
+   grid-column: span 4;
+   aspect-ratio: 1/1.1  ;
+}
+
+.project-card img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   transition: transform 0.3s ease;
+}
+
+.project-overlay {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(255, 255, 255, 0.95);
+   padding: 2rem;
+   opacity: 0;
+   transition: opacity 0.3s ease;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.project-card:hover .project-overlay {
+   opacity: 1;
+}
+
+.project-card:hover img {
+   transform: scale(1.09);
+}
+
+.project-overlay h3 {
+   margin: 0 0 1rem 0;
+   font-size: 1.5rem;
+}
+
+.project-overlay p {
+   margin: 0;
+   line-height: 1.6;
+   color: #666;
+}
+.container {
+   max-width: 1000px;
+   margin: 0 auto;
+   padding: 4rem 2rem;
+   position: relative;  /* Added for absolute positioning context */
+}
+
+.header-right {
+   position: absolute;
+   top: 2rem;
+   right: 2rem;
+   z-index: 100;
+}
+
+.nav-links {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+   gap: 0.75rem;
+   font-size: 14px;
+}
+
+.nav-item {
+   text-decoration: none;
+   color: #333;
+   font-size: 14px;
+   font-weight: 400;
+   letter-spacing: 0.5px;
+   transition: opacity 0.2s ease;
+}
+@font-face {
+   font-family: "San Francisco";
+   font-weight: 400;
+   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+ }
+
+.nav-item:hover {
+   opacity: 0.6;
+}
+
+
+/* Ensure the main content doesn't interfere with fixed nav */
+.header-left {
+   max-width: 65%;
+}
+.header-left h1 {
+   font-size: 3.5rem;
+   font-weight: 400;
+   font-family:"San Francisco";
+   margin-bottom: 1.5rem;
+}
+
+.header-right {
+   position: absolute;
+   top: 6rem;  /* Moved down from top */
+   right: 2rem;
+}
+
+.nav-links {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+   gap: .4rem;
+}
+
+.nav-item {
+   font-size: 1.2rem;  /* Larger font size */
+   font-weight: 598;
+   letter-spacing: 0.5px;
+   color: #000;
+   text-decoration: none;
+   
+}
+
+
+.header-left h1 {
+   font-size: 3.5rem;
+   font-weight: 100;
+   font-family: 'San Francisco';
+   color: #000;
+}
+
+/* Project title hover effects */
+.project-overlay h3 {
+   font-size: 1.5rem;
+   font-family: 'Playfair Display', serif;
+   transition: all 0.3s ease;
+}
+
+.project-overlay h3:hover {
+   font-size: 2rem;
+   font-family: 'Playfair Display', serif;
+   color: #000;
+}
+/* Dark mode styles */
+body.dark-mode {
+   background-color: #333;
+   color: #fff;
+}
+
+body.dark-mode .container {
+   background-color: #333;
+}
+
+body.dark-mode .header-left h1,
+body.dark-mode .nav-item,
+body.dark-mode .project-overlay h3 {
+   color: #fff;
+}
+
+body.dark-mode .intro-text,
+body.dark-mode .project-overlay p {
+   color: #ccc;
+}
+
+body.dark-mode .project-overlay {
+   background: rgba(51, 51, 51, 0.95);
+}
+
+.dark-mode-toggle {
+   position: fixed;
+   top: 20px;
+   right: 20px;
+   background: none;
+   border: none;
+   cursor: pointer;
+   z-index: 1000;
+   padding: 8px;
+   border-radius: 50%;
+   background-color: rgba(255, 255, 255, 0.2);
+   transition: background-color 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+   background-color: rgba(255, 255, 255, 0.3);
+}
+
+.dark-mode-toggle svg {
+   width: 24px;
+   height: 24px;
+   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dark-mode-toggle .moon-icon {
+   display: none;
+}
+
+body.dark-mode .dark-mode-toggle .sun-icon {
+   display: none;
+}
+
+body.dark-mode .dark-mode-toggle .moon-icon {
+   display: inline;
+}
+
+.dark-mode-toggle svg {
+   stroke: #333;
+}
+
+body.dark-mode .dark-mode-toggle svg {
+   stroke: #fff;
+}
+.project-title {
+   text-decoration: none;
+   color: inherit;
+   display: flex;
+   align-items: center;
+   gap: 0.4rem;
+   transition: all 0.2s ease;
+}
+
+.project-arrow {
+   opacity: 0;
+   transform: translateX(-10px);
+   transition: all 0.2s ease;
+}
+.project-overlay h3:hover {
+   font-size: 1.7rem; /* Reduced from 2rem to 1.7rem for subtler growth */
+   color: #000;
+}
+
+.project-title:hover .project-arrow {
+   opacity: 1;
+   transform: translateX(0);
+}
+
+.project-title:hover {
+   color: #666;
+}
+body {
+   margin: 0;
+   padding: 0;
+   font-family: 'DM Sans', sans-serif;
+   color: #333;
+   background: #fff;
+}
+
+.top-nav {
+   position: fixed;
+   top: 20px;
+   right: 40px;
+   z-index: 100;
+}
+
+.nav-links a {
+   text-decoration: none;
+   color: #000000;
+   margin-left: 2rem;
+   font-weight: 590;
+   font-size: 19px;
+   letter-spacing: 1px;
+}
+
+.project-header {
+   padding: 40px;
+   margin-top: 60px;
+}
+
+.project-number {
+   font-size: 14px;
+   color: #666;
+   margin-bottom: 8px;
+   display: block;
+}
+
+h1 {
+   font-size: 3rem;
+   font-weight: 500;
+   max-width: 800px;
+   margin: 0 auto;
+   padding: 0 px;
+   line-height: 1.2;
+}
+
+.hero-image {
+   width: 100%;
+   height: 70vh;
+   object-fit: cover;
+   margin: 40px 0;
+}
+
+.info-section {
+   background: #f5f5f5;
+   padding: 60px 40px;
+}
+
+.info-grid {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 40px;
+   max-width: 1200px;
+   margin: 0 auto;
+}
+
+.info-item h3 {
+   font-size: 14px;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   margin-bottom: 16px;
+}
+
+.content-section {
+   padding: 80px 40px;
+   max-width: 800px;
+   margin: 0 auto;
+}
+
+.section-number {
+   font-size: 14px;
+   color: #666;
+   margin-bottom: 8px;
+   display: block;
+}
+
+h2 {
+   font-size: 14px;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   margin-bottom: 40px;
+}
+
+p {
+   font-size: 18px;
+   line-height: 1.6;
+   color: #666;
+}
+
+.nav-item:hover {
+   color: #007bff; /* Adjust hover color as needed */
+}
+
+/* Image Slider Styles */
+.image-slider {
+    width: 100%;
+    height: 20vh;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.slider-container {
+    display: flex;
+    width: 500%;
+    height: 100%;
+    transition: transform 0.8s ease-out;
+}
+
+.slide {
+    width: 20%;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.slider-controls button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    pointer-events: auto;
+    transition: background-color 0.3s;
+}
+
+.slider-controls button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced Text Animations */
+.header-left h1 {
+    font-size: 3.5rem;
+    font-weight: 100;
+    font-family: 'San Francisco';
+    color: #000;
+    opacity: 1;
+}
+
+.intro-text {
+    max-width: 500px;
+    line-height: 1.8;
+    color: #292828;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+    font-family: century-gothic, sans-serif;
+    opacity: 1;
+}
+
+.header-right {
+    opacity: 1;
+}
+
+/* Dark mode adjustments for slider */
+body.dark-mode .slider-controls button {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+/* Footer Styles */
+.footer {
+    width: 100%;
+    padding: 2rem 0;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.footer-text {
+    color: #666;
+    font-size: 0.9rem;
+    font-family: century-gothic, sans-serif;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: century-gothic, sans-serif;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #000;
+}
+
+body.dark-mode .footer {
+    border-top-color: #444;
+}
+
+body.dark-mode .footer-text,
+body.dark-mode .footer-link {
+    color: #999;
+}
+
+body.dark-mode .footer-link:hover {
+    color: #fff;
+}
+
+.name-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-right: 150px;
+}
+
+.banana-canvas {
+    width: 300px;
+    height: 300px;
+    margin-left: 1rem;
+    position: absolute;
+    right: -150px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Footer Styles */
+.footer {
+    width: 100%;
+    padding: 2rem 0;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.footer-text {
+    color: #666;
+    font-size: 0.9rem;
+    font-family: century-gothic, sans-serif;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: century-gothic, sans-serif;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #000;
+}
+
+body.dark-mode .footer {
+    border-top-color: #444;
+}
+
+body.dark-mode .footer-text,
+body.dark-mode .footer-link {
+    color: #999;
+}
+
+body.dark-mode .footer-link:hover {
+    color: #fff;
+}
+
+.name-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-right: 150px;
+}
+
+.banana-canvas {
+    width: 300px;
+    height: 300px;
+    margin-left: 1rem;
+    position: absolute;
+    right: -150px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Footer Styles */
+.footer {
+    width: 100%;
+    padding: 2rem 0;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.footer-text {
+    color: #666;
+    font-size: 0.9rem;
+    font-family: century-gothic, sans-serif;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: century-gothic, sans-serif;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #000;
+}
+
+body.dark-mode .footer {
+    border-top-color: #444;
+}
+
+body.dark-mode .footer-text,
+body.dark-mode .footer-link {
+    color: #999;
+}
+
+body.dark-mode .footer-link:hover {
+    color: #fff;
+}
+
+.name-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-right: 150px;
+}
+
+.banana-canvas {
+    width: 300px;
+    height: 300px;
+    margin-left: 1rem;
+    position: absolute;
+    right: -150px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Footer Styles */
+.footer {
+    width: 100%;
+    padding: 2rem 0;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.footer-text {
+    color: #666;
+    font-size: 0.9rem;
+    font-family: century-gothic, sans-serif;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: century-gothic, sans-serif;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #000;
+}
+
+body.dark-mode .footer {
+    border-top-color: #444;
+}
+
+body.dark-mode .footer-text,
+body.dark-mode .footer-link {
+    color: #999;
+}
+
+body.dark-mode .footer-link:hover {
+    color: #fff;
+}
+
+.name-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-right: 150px;
+}
+
+.banana-canvas {
+    width: 300px;
+    height: 300px;
+    margin-left: 1rem;
+    position: absolute;
+    right: -150px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+ 
+
+
+
+.background-canvas {
+   position: absolute;  
+   top: 100;
+   left: 0;
+   width: 100%;
+   height: 50%;
+   z-index: -1;
+   pointer-events: none; /* So clicks pass through to other elements */
+ }

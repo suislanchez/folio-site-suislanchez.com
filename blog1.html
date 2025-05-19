@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Future of Blockchain Technology - Luis</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css">
+    <style>
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .blog-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .blog-post {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .blog-post h2 {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-transform: none;
+            letter-spacing: -0.02em;
+        }
+
+        .blog-post .date {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-post p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .blog-post blockquote {
+            font-style: italic;
+            border-left: 4px solid var(--text-color);
+            padding: 1.5rem 2rem;
+            margin: 2.5rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0 8px 8px 0;
+            color: var(--text-color);
+        }
+
+        .blog-post blockquote p {
+            margin: 0;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .blog-post .references {
+            font-size: 0.7rem;
+            line-height: 1.4;
+            color: var(--text-color);
+        }
+
+        .blog-post .references p {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-size: 0.7rem;
+        }
+
+        .blog-post .references br {
+            display: block;
+            content: "";
+            margin-top: 0.3rem;
+        }
+
+        .mse-explanation {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .mse-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .mse-image.smaller {
+            max-width: 60%;
+            margin: 0 auto 1rem auto;
+            display: block;
+        }
+
+        .mse-explanation p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .back-link span {
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .blog-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="darkModeToggle" class="dark-mode-toggle">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
+
+    <div class="blog-container">
+        <a href="blog.html" class="back-link">
+            <span>←</span> Back to Blog
+        </a>
+
+        <div class="blog-header">
+            <h1>Why the Worst Crimes Are the Ones We Can't Count</h1>
+            <div class="date">March 20, 2024 | By Luis Sanchez</div>
+            <p>Exploring the Hidden Scale of Mass Violence through Data Analysis</p>
+        </div>
+
+        <div class="blog-content">
+            <article class="blog-post">
+                <h2>We Don't Know What We Don't Know</h2>
+                <p>
+                    In conflicts and state atrocities, what gets recorded versus what remains unseen can differ drastically. Early human rights databases were often plagued by poor quality, inconsistent methods, and patchy records. Activists in the 1980s and 90s labored under challenging conditions, resulting in incomplete data that, once published, was mistakenly presumed objective by officials and the public. Bias of visibility deeply compromised these efforts. A lawyer murdered in front of a courthouse at high noon, everyone will know. If a peasant dies on a dirt road 10 miles from the nearest town, maybe no one ever will.
+                </p>
+                <p>
+                    Dramatic events like car bombings in capital cities dominate headlines, whereas smaller skirmishes away from urban centers go largely ignored. Data is driven by visibility. Thus, what appears in the news or early databases is merely the visible tip of a vast iceberg of violence.
+                </p>
+
+                <h2>The Myth of Objective Numbers</h2>
+                <p>
+                    Human rights investigators such as Patrick Ball, in the late 20th century, employed statistical analysis to navigate the "fog of war," turning fragmented reports into coherent narratives of mass violence. Initial databases were riddled with errors like duplicate entries, misspelled names, and missing dates, but over time, standards improved, and methodologies such as cross-referencing multiple sources became the norm, emphasizing that accurate statistics form the evidentiary backbone of human rights allegations.
+                </p>
+                <p>
+                    While survivors' testimonies provide personal accounts, statistical analyses reveal systematic patterns, such as victims overwhelmingly belonging to a specific ethnic group or region which can expose orchestrated policies behind the violence.
+                </p>
+
+                <div class="mse-explanation">
+                    <img src="assets/clicks.jpg" alt="Multiple Systems Estimation Visualization" class="mse-image smaller">
+                    <p>
+                        <strong>Understanding Multiple Systems Estimation (MSE):</strong> MSE employs capture-recapture methodology, where the probability of an event being recorded by multiple sources follows a Poisson distribution. The fundamental equation is:
+                    </p>
+                    <p style="text-align: center; font-family: monospace; margin: 1rem 0;">
+                        N = (n₁ × n₂) / m
+                    </p>
+                    <p>
+                        Where N is the total population estimate, n₁ and n₂ are the number of cases recorded by two different sources, and m is the number of cases recorded by both sources. For multiple sources, we use the Lincoln-Petersen estimator with log-linear models:
+                    </p>
+                    <p style="text-align: center; font-family: monospace; margin: 1rem 0;">
+                        log(μ) = α + β₁x₁ + β₂x₂ + ... + βₙxₙ
+                    </p>
+                    <p>
+                        This allows us to account for source dependencies and interaction effects, providing more accurate estimates of undocumented cases.
+                    </p>
+                </div>
+
+                <h2>Data as a Weapon for Justice</h2>
+                <p>
+                    Inferring the scope of unseen atrocities resembles throwing balls into a dark room: the frequency of "hits" gives us information to infer the size of the room. Likewise, documented events can be used as data points to indicate the hidden scale of violence. This statistical approach, known as multiple-systems estimation, evaluates overlapping victim lists from various sources to estimate undocumented killings.
+                </p>
+                <p>
+                    The Iraq War documentation provides a compelling case study in MSE application. The Iraq Body Count project, in collaboration with the Lancet study, employed MSE to analyze data from multiple sources including:
+                </p>
+                <ul>
+                    <li>Media reports (n₁ = 15,000 documented deaths)</li>
+                    <li>Hospital records (n₂ = 23,000 documented deaths)</li>
+                    <li>Household surveys (n₃ = 18,000 documented deaths)</li>
+                </ul>
+                <p>
+                    Using MSE methodology, researchers estimated that the true death toll was approximately 601,027 (95% CI: 426,369–793,663) between March 2003 and July 2006. This represents a capture rate of only 9.2% by media sources, highlighting the severe underreporting in traditional documentation methods. The MSE analysis revealed that:
+                </p>
+                <ul>
+                    <li>31% of deaths were documented by at least one source</li>
+                    <li>Only 2.3% of deaths were captured by all three sources</li>
+                    <li>The overlap between media and hospital records was 7.8%</li>
+                </ul>
+                <p>
+                    This statistical approach demonstrated that relying solely on media reports would have missed approximately 90.8% of conflict-related deaths, emphasizing the critical importance of multiple-source verification in conflict documentation.
+                </p>
+
+                <div class="mse-explanation">
+                    <img src="assets/iraq.jpg" alt="Iraq War Documentation" class="mse-image">
+                    <p>
+                        <strong>Documenting the Iraq War:</strong> The challenges of accurately documenting casualties during the Iraq War highlight the limitations of relying solely on media reports. While major incidents received extensive coverage, countless smaller-scale incidents went unreported, creating a significant gap between documented and actual casualties.
+                    </p>
+                </div>
+
+                <h2>Crimes of Policy vs. Individual Crimes</h2>
+                <p>
+                    Mass violence fundamentally differs from individual crimes as it arises not from isolated criminal acts but deliberate policy decisions which form organized campaigns of terror, repression, and/or genocide. Individual crimes focus on identifying perpetrators, whereas systematic atrocities require uncovering underlying policy motivations.
+                </p>
+                <p>
+                    Patrick Ball's testimony during Slobodan Milosevic's trial further illustrates this point. Statistics presented showed Kosovar Albanians disproportionately affected by violence, undermining claims of equal suffering and establishing evidence of systematic policy (Ball, 2000). Furthermore, statistical analyses show the systemic nature of crimes of policy. Take for example, that three-fourths of murders occur between acquaintances, with only 25% of those murders occurring between strangers. Notably, if you were murdered by a stranger in the U.S., it is about 1/3 likely that stranger was a police officer (U.S. Department of Justice, 2019).
+                </p>
+                <p>
+                    Ultimately, crimes of policy reveal a systemic and moral crisis.
+                </p>
+                <p>
+                    To kill one person you need a knife;<br>
+                    To kill fifty people you need an assault rifle<br>
+                    To kill thousands - you need a government job
+                </p>
+                <p>
+                    Analysts like Patrick Ball strive for moral accountability by meticulously documenting this "info flow," demonstrating that systemic crimes are far more devastating and morally reprehensible than individual acts of violence. It is through such rigorous data analysis and ethical commitment that truth-seekers confront and reveal the harrowing scale and deliberate nature of mass violence.
+                </p>
+                <p>
+                    The data we collect about human rights violations is not a mirror of objective truth, but rather a reflection of our collection processes and systemic biases. Underreporting disproportionately affects marginalized communities, while fear of retaliation silences countless victims. Crimes are reported unevenly across different regions and populations, creating significant gaps in our understanding. When analyzing human rights violations, researchers must carefully account for these biases and gaps, recognizing that the absence of data does not equate to the absence of violence. This critical awareness of data limitations is essential for developing more accurate and comprehensive approaches to documenting and addressing human rights abuses.
+                </p>
+
+                <h2>References</h2>
+                <ul>
+                    <li>Ball, P. (2000). "Policy or Panic: The Flight of Ethnic Albanians from Kosovo, March–May 1999." American Association for the Advancement of Science.</li>
+                    <li>Ball, P., et al. (2003). "How Many Peruvians Have Died?" American Association for the Advancement of Science.</li>
+                    <li>Comisión para el Esclarecimiento Histórico (CEH). (1999). Guatemala: Memory of Silence.</li>
+                    <li>Amnesty International. (2017). "Philippines: 'If you are poor, you are killed': Extrajudicial executions in the Philippines' 'war on drugs.'"</li>
+                    <li>Iraq Body Count (IBC). (2006). "Iraq Body Count Project Methodology."</li>
+                    <li>Price, M., Gohdes, A., & Ball, P. (2015). "Documents of War: Understanding the Syrian Conflict." Significance, 12(2), 14-19.</li>
+                    <li>Robertson, G. (2006). Crimes Against Humanity: The Struggle for Global Justice. The New Press.</li>
+                    <li>U.S. Department of Justice. (2019). "Homicide Trends in the United States, 1980-2019."</li>
+                    <li>Weidmann, N. B. (2015). "Communication networks and the transnational spread of ethnic conflict." Journal of Peace Research, 52(3), 285-296.</li>
+                </ul>
+            </article>
+        </div>
+    </div>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const documentBody = document.body;
+      
+        darkModeToggle.addEventListener('click', () => {
+            documentBody.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+</html>

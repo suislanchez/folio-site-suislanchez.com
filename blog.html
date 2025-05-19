@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Luis</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .blog-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .blog-post {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .blog-post h2 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            font-size: 2rem;
+        }
+
+        .blog-post h2 a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .blog-post h2 a:hover {
+            color: #007AFF;
+        }
+
+        .blog-post h2 a .arrow {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post h2 a:hover .arrow {
+            transform: translateX(5px);
+        }
+
+        .blog-post .date {
+            color: var(--text-color);
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+
+        .blog-post p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .back-link span {
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .blog-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="darkModeToggle" class="dark-mode-toggle">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
+
+    <div class="blog-container">
+        <a href="index.html" class="back-link">
+            <span>←</span> Back to Portfolio
+        </a>
+
+        <div class="blog-header">
+            <h1>Blog</h1>
+            <p>My thoughts on technology, life, and everything in between.</p>
+            </p>
+        </div>
+
+        <div class="blog-content">
+            <article class="blog-post">
+                <h2>
+                    <a href="blog1.html">
+                        Why the Worst Crimes Are the Ones We Can't Count
+                        <span class="arrow">→</span>
+                    </a>
+                </h2>
+                <h3>Proof Based Esimations of the True Scale of Mass Violence</h3>
+                <div class="date">March 20, 2024</div>
+                <p>
+                    Exploring how data analysis reveals the true scale of mass violence and human rights violations, from the bias of visibility to systematic crimes of policy.
+                </p>
+            </article>
+
+            <article class="blog-post">
+                <h2>
+                    <a href="blog2.html">
+                        Algorithmic Complacency in an Attention Economy
+                        <span class="arrow">→</span>
+                    </a>
+                </h2>
+                <h3>Why You Can't Stop Scrolling</h3>
+                <div class="date">March 10, 2024</div>
+                <p>
+                    Your attention is the most valuable currency online. But are we giving too much of it away, and to the right people?
+                </p>
+            </article>
+
+            <article class="blog-post">
+                <h2>
+                    <a href="blog3.html">
+                        Why the "Decentralized Web" is Still Centralized
+                        <span class="arrow">→</span>
+                    </a>
+                </h2>
+                <h3>A Critical Analysis of the Viability of Cryptocurrencies and Blockchains</h3>
+                <div class="date">March 5, 2024</div>
+                <p>
+                    A nuanced and unbiased take on the evolution, impact, and contradictions of cryptocurrencies, and the potential for positive change.
+                </p>
+            </article>
+        </div>
+    </div>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const documentBody = document.body;
+      
+        darkModeToggle.addEventListener('click', () => {
+            documentBody.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+</html>
