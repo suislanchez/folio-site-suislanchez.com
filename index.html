@@ -15,6 +15,9 @@
             color: inherit;
             text-decoration: none;
             transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         .name-link:hover {
             opacity: 0.8;
@@ -68,7 +71,7 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
             gap: clamp(1rem, 2vw, 2rem);
             padding: clamp(1rem, 2vw, 2rem);
             width: 100%;
@@ -87,10 +90,21 @@
             grid-column: span 3;
         }
 
-        @media (max-width: 768px) {
-            .project-card.medium,
-            .project-card.large {
-                grid-column: span 1;
+        @media (min-width: 1200px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -105,10 +119,57 @@
 
         .header-content {
             transition: transform 1000ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
         }
 
-        .header-content:hover {
-            transform: scale(1.01);
+        .header-left {
+            flex: 1;
+        }
+
+        .blog-slider {
+            flex: 1;
+            max-width: 400px;
+            overflow: hidden;
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .blog-slider-container {
+            display: flex;
+            gap: 1rem;
+            animation: slide 20s linear infinite;
+        }
+
+        .blog-slider-container:hover {
+            animation-play-state: paused;
+        }
+
+        .blog-post-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: inherit;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .blog-post-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
         }
 
         /* Add responsive text sizing */
@@ -196,7 +257,7 @@
         .animated-gif {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: fill;
             object-position: 0% center;
             transition: transform 0.3s ease-in-out;
         }
@@ -207,16 +268,17 @@
 
         /* Custom positioning for Europa Drive GIF */
         .project-card:nth-child(7) .animated-gif {
-            object-position: 30% center;
+            object-position: 50% center;
         }
 
         /* Custom styles for Traceroute GIF */
         .project-card:nth-child(7) .animated-gif {
             transform: scale(1);
             object-position: left;
+            transition: transform 0.3s ease-in-out;
         }
         .project-card:nth-child(7):hover .animated-gif {
-            transform: scale(0.75);
+            transform: scale(1);
         }
 
         /* Pure white background for SimuTrader */
@@ -226,11 +288,17 @@
 
         /* Custom styles for Satoshi Sailors GIF */
         .project-card:nth-child(5) .animated-gif {
-            transform: scale(0.8);
-            object-position: center;
+            transform: scale(1);
+            object-position: left;
+            transition: transform 0.4s ease -in-out;
         }
         .project-card:nth-child(5):hover .animated-gif {
-            transform: scale(0.85);
+            transform: scale(1);
+        }
+
+        /* Custom positioning for Seven Seas */
+        .project-card:nth-child(7) img {
+            object-position: left ;
         }
 
         /* Hamburger Menu Styles */
@@ -340,6 +408,206 @@
         .header-right {
             display: none;
         }
+
+        .bio-section {
+            display: flex;
+            gap: 4rem;
+            align-items: flex-start;
+            position: relative;
+            padding-right: 0;
+            margin-bottom: 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .timeline-section {
+            flex: 2;
+            max-width: 75%;
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .timeline-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 1;
+        }
+
+        .timeline-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-content {
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            line-height: 1.4;
+            color: rgba(0, 0, 0, 0.9);
+            font-weight: 500;
+            max-width: 00px;
+        }
+
+        .timeline-item.present .timeline-label {
+            color: #0066ff;
+        }
+
+        .timeline-item.present .timeline-content {
+            color: rgba(0, 0, 0, 1);
+            font-weight: 600;
+        }
+
+        .recent-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 450px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .recent-posts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .recent-posts-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(0, 0, 0, 0.7);
+            font-weight: 600;
+        }
+
+        .go-to-blog {
+            font-size: 0.75rem;
+            color: #0066ff;
+            text-decoration: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: rgba(0, 102, 255, 0.1);
+        }
+
+        .go-to-blog:hover {
+            background: rgba(0, 102, 255, 0.2);
+            transform: translateX(3px);
+        }
+
+        .recent-post-link {
+            color: rgba(0, 0, 0, 0.9) !important;
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            opacity: 1;
+            transform: none;
+            line-height: 1.4;
+        }
+
+        .recent-post-link:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateX(5px);
+            color: rgba(0, 0, 0, 1) !important;
+        }
+
+        .new-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #0066ff;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+            margin-top: 0.4rem;
+        }
+
+        @media (min-width: 1600px) {
+            .bio-section {
+                max-width: 1600px;
+            }
+            
+            .timeline-section {
+                max-width: 80%;
+            }
+
+            .recent-posts {
+                width: 500px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .bio-section {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+
+            .timeline-section {
+                max-width: 100%;
+            }
+
+            .recent-posts {
+                width: 100%;
+            }
+        }
+
+        .name-container {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .name-link {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Remove cursor styles */
+        .cursor {
+            display: none;
+        }
+
+        .projects-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 0 clamp(1rem, 2vw, 2rem);
+        }
+
+        .projects-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .projects-subtitle {
+            font-size: 0.9rem;
+            color: rgba(0, 0, 0, 0.6);
+        }
     </style>
 </head>
 <body>
@@ -358,17 +626,66 @@
             <div class="header-content">
                 <div class="header-left">
                     <div class="name-container">
-                        <h1><a href="quotes.html" class="name-link">Luis Sanchez</a></h1>
+                        <h1>
+                            <a href="quotes.html" class="name-link">
+                                Luis Sanchez
+                            </a>
+                        </h1>
                         <div class="fluid-animation">
                             <div class="fluid-blob"></div>
                         </div>
                     </div>
-                    <p class="intro-text">Hello! I'm Luis, a Software Developer at UC Berkeley, who's excited about on-chain security and economic freedom for the masses. Feel free to explore my page and click around!</p>
+                    <div class="bio-section">
+                        <div class="timeline-section">
+                            <div class="timeline-item past">
+                                <div class="timeline-label">Past</div>
+                                <div class="timeline-content">
+                                    Started my journey in software development at UC Berkeley, focusing on blockchain technology and security.
+                                </div>
+                            </div>
+                            <div class="timeline-item present">
+                                <div class="timeline-label">Present</div>
+                                <div class="timeline-content">
+                                    Software Developer at UC Berkeley, passionate about on-chain security and building tools for economic freedom.
+                                </div>
+                            </div>
+                            <div class="timeline-item future">
+                                <div class="timeline-label">Future</div>
+                                <div class="timeline-content">
+                                    Working towards making blockchain technology more accessible and secure for everyone.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="recent-posts">
+                            <div class="recent-posts-header">
+                                <div class="recent-posts-title">Recent Posts</div>
+                                <a href="blog.html" class="go-to-blog">Go to Blog →</a>
+                            </div>
+                            <a href="blog/blockchain-security.html" class="recent-post-link">
+                                <span class="new-dot"></span>
+                                <span>Why The Worst Crimes Are The Ones We Can't Count</span>
+                            </a>
+                            <a href="blog/algorithmic-complexity.html" class="recent-post-link">
+                                <span class="new-dot"></span>
+                                <span>Algorithmic Complacency in an Attention Economy</span>
+                            </a>
+                            <a href="blog/web3-development.html" class="recent-post-link">
+                                <span class="new-dot"></span>
+                                <span>Why the "Decentralized Web" is Still Centralized</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
 
         <main class="projects-grid">
+            <div class="projects-header">
+                <div>
+                    <div class="projects-title">Projects</div>
+                    <div class="projects-subtitle">A collection of my work and experiments</div>
+                </div>
+            </div>
             <div class="project-card">
                 <div class="project-image-container">
                     <img src="assets/simutrader.png" alt="SimuTrader" class="png">
@@ -387,66 +704,26 @@
                 <img src="assets/proper-bones.jpg" alt="Proper Bones">
                 <div class="project-overlay">
                      <h3>
-        <a href="https://www.properbones.com/" class="project-title">
-            Proper Bones
-            <span class="project-arrow">→</span>
-        </a>
-    </h3>
+                        <a href="https://www.properbones.com/" class="project-title">
+                            Proper Bones
+                            <span class="project-arrow">→</span>
+                        </a>
+                    </h3>
                     <p>A full-stack retail website for selling vintage furniture and decor upcycling. New listings weekly!</p>
                 </div>
             </div>
             <div class="project-card">
-                <img src="assets/hackathon.jpg" alt="hackathon">
-                <div class="project-overlay">
-                    <h3>
-                        <a href="https://github.com/suislanchez/prepalchemy" class="project-title">
-                            PrepAlchemy
-                            <span class="project-arrow">→</span>
-                        </a>
-                    </h3>
-                    
-                    <p>AI powered real time interview trainer, utilizing an empathic voice interface, analyazing speech prosody and vocal + facial expression to provide analytics and feedback on simulated interviews. </p>
-                </div>
-            </div>
-
-            <div class="project-card">
-                    <img src="assets/duo.jpg" alt="duo">
-                    <div class="project-overlay">
-                        <h3>
-                            <a href="duolingo.html" class="project-title">
-                                Duolingo Thrive
-                                <span class="project-arrow">→</span>
-                            </a>
-                        </h3>
-    
-                        <p>My experience at the Duolingo thrive internship Summer 2024! </p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="assets/ngram.jpg" alt="Ngram">
-                <div class="project-overlay">
-                    <h3>
-                        <a href="https://github.com/suislanchez/n-Wordnet" class="project-title">
-                           n-Wordnet
-                            <span class="project-arrow">→</span>
-                        </a>
-                    </h3>
-                    <p> View and compare the frequency of words and phrases in text over time. </p>
-                </div>
-            </div>
-            <div class="project-card">
                 <div class="project-image-container">
-                    <img src="assets/satoshi-sailors.gif" alt="Satoshi Sailors Animation" class="animated-gif" loop>
+                    <img src="assets/europa.gif" alt="Europa Drive Animation" class="animated-gif" loop>
                 </div>
                 <div class="project-overlay">
-                    <h3>
-                        <a href="https://solplay.de/sevenseas/index.html" class="project-title">
-                            Satoshi Sailors: Seven Seas
+                    <h3>   
+                        <a href="blockchainbreakdown.html" class="project-title">
+                            Europa Drive
                             <span class="project-arrow">→</span>
                         </a>
-                    </h3>
-                    <p>Command your NFTs as avatars and ships to deploy, loot your enemies, and use your bounty to upgrade your destructive power. 
-                    </p>
+                    </h3>    
+                    <p> Cryptographically secure file sharing database program backend. (Dropbox clone) </p>
                 </div>
             </div>
             <div class="project-card">
@@ -464,17 +741,56 @@
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-image-container">
-                    <img src="assets/europa.gif" alt="Europa Drive Animation" class="animated-gif" loop>
-                </div>
+                <img src="assets/duo.jpg" alt="duo">
                 <div class="project-overlay">
-                    <h3>   
-                        <a href="blockchainbreakdown.html" class="project-title">
-                            Europa Drive
+                    <h3>
+                        <a href="duolingo.html" class="project-title">
+                            Duolingo Thrive
                             <span class="project-arrow">→</span>
                         </a>
                     </h3>
-                    <p> Cryptographically secure file sharing database program backend. (Dropbox clone) </p>
+                    <p>My experience at the Duolingo thrive internship Summer 2024! </p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/hackathon.jpg" alt="hackathon">
+                <div class="project-overlay">
+                    <h3>
+                        <a href="https://github.com/suislanchez/prepalchemy" class="project-title">
+                            PrepAlchemy
+                            <span class="project-arrow">→</span>
+                        </a>
+                    </h3>
+                    <p>AI powered real time interview trainer, utilizing an empathic voice interface, analyazing speech prosody and vocal + facial expression to provide analytics and feedback on simulated interviews. </p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="assets/satoshi-sailors.jpg" alt="Satoshi Sailors" class="png">
+                </div>
+                <div class="project-overlay">
+                    <h3>
+                        <a href="https://solplay.de/sevenseas/index.html" class="project-title">
+                            Satoshi Sailors: Seven Seas
+                            <span class="project-arrow">→</span>
+                        </a>
+                    </h3>
+                    <p>Command your NFTs as avatars and ships to deploy, loot your enemies, and use your bounty to upgrade your destructive power. 
+                    </p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="assets/ngram.jpg" alt="Ngram">
+                </div>
+                <div class="project-overlay">
+                    <h3>
+                        <a href="https://github.com/suislanchez/n-Wordnet" class="project-title">
+                           n-Wordnet
+                            <span class="project-arrow">→</span>
+                        </a>
+                    </h3>
+                    <p> View and compare the frequency of words and phrases in text over time. </p>
                 </div>
             </div>
             <div class="project-card">
@@ -842,23 +1158,20 @@
             camera.aspect = width / height;
             camera.updateProjectionMatrix();
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const recentPosts = document.querySelectorAll('.recent-post-link');
+            
+            // Make all posts visible
+            recentPosts.forEach(post => {
+                post.style.opacity = '1';
+                post.style.transform = 'none';
+            });
+        });
     </script>
 
     <!-- Project Card Animation Controller -->
     <script>
-        // GIF Looping Handler
-        function setupGifLooping() {
-            const gifs = document.querySelectorAll('.animated-gif');
-            gifs.forEach(gif => {
-                gif.addEventListener('load', function() {
-                    // Reset the GIF when it ends
-                    this.addEventListener('ended', function() {
-                        this.src = this.src;
-                    });
-                });
-            });
-        }
-
         class ProjectCardAnimator {
             constructor() {
                 this.cards = document.querySelectorAll('.project-card');
@@ -873,21 +1186,12 @@
                 this.cards.forEach(card => {
                     this.observer.observe(card);
                 });
-                setupGifLooping();
             }
 
             handleIntersection(entries) {
                 entries.forEach(entry => {
                     const card = entry.target;
-                    const gif = card.querySelector('.animated-gif');
                     
-                    // Handle GIF animation
-                    if (gif) {
-                        if (entry.isIntersecting) {
-                            gif.src = gif.src;
-                        }
-                    }
-
                     // Handle scale animation
                     if (entry.isIntersecting) {
                         const ratio = entry.intersectionRatio;
