@@ -205,30 +205,18 @@
             transform: scale(1.05);
         }
 
-        /* Custom positioning for Europa Drive GIF */
-        .project-card:nth-child(7) .animated-gif {
-            object-position: 30% center;
-        }
+       
 
         /* Custom styles for Traceroute GIF */
-        .project-card:nth-child(7) .animated-gif {
-            transform: scale(1);
-            object-position: left;
-        }
-        .project-card:nth-child(7):hover .animated-gif {
-            transform: scale(0.75);
-        }
-
+       
         /* Pure white background for SimuTrader */
         .project-card:first-child .project-image-container {
             background-color: #FFFFFF;
         }
 
         /* Custom styles for Satoshi Sailors GIF */
-        .project-card:nth-child(5) .animated-gif {
-            transform: scale(0.8);
-            object-position: center;
-        }
+        
+    
         .project-card:nth-child(5):hover .animated-gif {
             transform: scale(0.85);
         }
@@ -358,17 +346,31 @@
             <div class="header-content">
                 <div class="header-left">
                     <div class="name-container">
-                        <h1><a href="quotes.html" class="name-link">Luis Sanchez</a></h1>
+                        <h1><a href="quotes.html" class="name-link">luis sanchez</a></h1>
                         <div class="fluid-animation">
                             <div class="fluid-blob"></div>
                         </div>
                     </div>
-                    <p class="intro-text">Hello! I'm Luis, a Software Developer at UC Berkeley, who's excited about on-chain security and economic freedom for the masses. Feel free to explore my page and click around!</p>
+                    <p class="intro-text">hello! I'm luis, a Software Developer at UC Berkeley, prev Duolingo, Chegg. Check out my work below, or take a look at my most recent stuff on X/twitter</p>
                 </div>
             </div>
         </header>
 
         <main class="projects-grid">
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="assets/inby.gif" alt="Inby Email Assistant" class="animated-gif" loop>
+                </div>
+                <div class="project-overlay">
+                    <h3>   
+                        <a href="https://github.com/suislanchez/inbox-flux" class="project-title">
+                            Inby
+                            <span class="project-arrow">→</span>
+                        </a>
+                    </h3>
+                    <p>Reads your emails, categorizes them and drafts responses while you sleep.</p>
+                </div>
+            </div>
             <div class="project-card">
                 <div class="project-image-container">
                     <img src="assets/simutrader.png" alt="SimuTrader" class="png">
@@ -383,6 +385,8 @@
                     <p>A simulated stock-trading educational platform, users starts with $10000 in virtual cash, trades real market data, and competes on a global leaderboard.</p>
                 </div>
             </div>
+            
+            
             <div class="project-card">
                 <img src="assets/proper-bones.jpg" alt="Proper Bones">
                 <div class="project-overlay">
@@ -399,7 +403,7 @@
                 <img src="assets/hackathon.jpg" alt="hackathon">
                 <div class="project-overlay">
                     <h3>
-                        <a href="https://github.com/suislanchez/prepalchemy" class="project-title">
+                        <a href="https://devpost.com/software/prepalchemy?_gl=1*nog8i9*_gcl_au*NjIxMDU3Njg3LjE3NDgzMzQ5MzY.*_ga*OTkwNzQxNzk2LjE3NDgzMzQ5MzY.*_ga_0YHJK3Y10M*czE3NDg1NDE3NTkkbzIkZzEkdDE3NDg1NDE3NjYkajUzJGwwJGgw" class="project-title">
                             PrepAlchemy
                             <span class="project-arrow">→</span>
                         </a>
@@ -408,33 +412,37 @@
                     <p>AI powered real time interview trainer, utilizing an empathic voice interface, analyazing speech prosody and vocal + facial expression to provide analytics and feedback on simulated interviews. </p>
                 </div>
             </div>
-
             <div class="project-card">
-                    <img src="assets/duo.jpg" alt="duo">
-                    <div class="project-overlay">
-                        <h3>
-                            <a href="duolingo.html" class="project-title">
-                                Duolingo Thrive
-                                <span class="project-arrow">→</span>
-                            </a>
-                        </h3>
-    
-                        <p>My experience at the Duolingo thrive internship Summer 2024! </p>
+                <div class="project-image-container">
+                    <img src="assets/europa.gif" alt="Europa Drive Animation" class="animated-gif" loop>
                 </div>
-            </div>
-            <div class="project-card">
-                <img src="assets/ngram.jpg" alt="Ngram">
                 <div class="project-overlay">
-                    <h3>
-                        <a href="https://github.com/suislanchez/n-Wordnet" class="project-title">
-                           n-Wordnet
+                    <h3>   
+                        <a href="blockchainbreakdown.html" class="project-title">
+                            Europa Drive
                             <span class="project-arrow">→</span>
                         </a>
                     </h3>
-                    <p> View and compare the frequency of words and phrases in text over time. </p>
+                    <p> Cryptographically secure file sharing database program backend. (Dropbox clone) </p>
                 </div>
             </div>
+           
             <div class="project-card">
+                <div class="project-image-container">
+                    <img src="assets/roamfm.gif" alt="Roam-FM Radio Globe" class="animated-gif" loop>
+                </div>
+                <div class="project-overlay">
+                    <h3>   
+                        <a href="https://github.com/suislanchez/roam-fm" class="project-title">
+                            Roam-FM
+                            <span class="project-arrow">→</span>
+                        </a>
+                    </h3>
+                    <p>Explore an interactive 3D globe to tune into 45,000+ live radio stations around the world, filter by mood or genre, beautifully visualized 24/7 playing.</p>
+                </div>
+            </div>
+   
+                <div class="project-card">
                 <div class="project-image-container">
                     <img src="assets/satoshi-sailors.gif" alt="Satoshi Sailors Animation" class="animated-gif" loop>
                 </div>
@@ -464,19 +472,18 @@
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-image-container">
-                    <img src="assets/europa.gif" alt="Europa Drive Animation" class="animated-gif" loop>
-                </div>
+                <img src="assets/ngram.jpg" alt="Ngram">
                 <div class="project-overlay">
-                    <h3>   
-                        <a href="blockchainbreakdown.html" class="project-title">
-                            Europa Drive
+                    <h3>
+                        <a href="https://github.com/suislanchez/n-Wordnet" class="project-title">
+                           n-Wordnet
                             <span class="project-arrow">→</span>
                         </a>
                     </h3>
-                    <p> Cryptographically secure file sharing database program backend. (Dropbox clone) </p>
+                    <p> View and compare the frequency of words and phrases in text over time. </p>
                 </div>
             </div>
+            
             <div class="project-card">
                 <div class="project-image-container">
                     <img src="assets/200w.gif" alt="Pacman Animation" class="animated-gif" loop>
@@ -490,9 +497,12 @@
                     </h3>
                     <p> The original 1980 game, programmed from scratch.  </p>
                 </div>
+                </div>
+                </main>
             </div>
-        </main>
-    </div>
+          
+            
+           
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-text">
