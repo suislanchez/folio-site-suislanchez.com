@@ -8,63 +8,201 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css">
     <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            --blur-amount: 10px;
+            --accent-color-light: #6e9fff;
+            --accent-color-dark: #ff6e9f;
+        }
+
+        body.dark-mode {
+            --glass-bg: rgba(20, 20, 20, 0.25);
+            --glass-border: rgba(20, 20, 20, 0.18);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --accent-color: var(--accent-color-dark);
+        }
+
+        body {
+            --accent-color: var(--accent-color-light);
+            background: transparent;
+            transition: background 0.5s ease;
+        }
+
+        body.dark-mode {
+            background: transparent;
+        }
+
         .quotes-container {
             max-width: 800px;
             margin: 2rem auto;
             padding: 0 1rem;
+            perspective: 1000px;
         }
 
         .quote {
             margin-bottom: 2rem;
-            padding: 1.5rem;
-            border-left: 3px solid var(--accent-color);
-            background: var(--card-bg);
-            transition: transform 0.3s ease;
+            padding: 2rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            overflow: hidden;
+        }
+
+        .quote::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(
+                circle at center,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0) 70%
+            );
+            transform: rotate(30deg);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .quote:hover {
-            transform: translateX(10px);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote:hover::before {
+            opacity: 1;
+            animation: liquid-shine 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes liquid-shine {
+            0% {
+                top: -50%;
+                left: -50%;
+                opacity: 0.5;
+            }
+            100% {
+                top: -10%;
+                left: -10%;
+                opacity: 0.2;
+            }
         }
 
         .quote-text {
-            font-size: 1.1rem;
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
             line-height: 1.6;
-            color: var(--text-color);
-            margin-bottom: 0.5rem;
+            color: rgba(0, 0, 0, 0.85);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
         }
 
         .quote-author {
-            font-size: 0.9rem;
-            color: var(--secondary-text);
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.7);
             font-style: italic;
+            position: relative;
+            z-index: 2;
             opacity: 0;
-            transition: opacity 0.3s ease;
-            position: absolute;
-            bottom: 1rem;
-            right: 1.5rem;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
         .quote:hover .quote-author {
             opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quote:hover .quote-text {
+            transform: translateY(-5px);
         }
 
         .back-link {
             display: inline-block;
             margin-bottom: 2rem;
-            color: var(--accent-color);
+            color: rgba(0, 0, 0, 0.85);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .back-link:hover {
             color: var(--text-color);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
         }
 
         .page-title {
-            font-size: 2.5rem;
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", sans-serif;
+            font-size: 2rem;
+            font-weight: 400;
             margin-bottom: 2rem;
-            color: var(--text-color);
+            color: rgba(0, 0, 0, 0.85);
+            position: relative;
+            display: inline-block;
+            background: none;
+            -webkit-background-clip: initial;
+            -webkit-text-fill-color: initial;
+            transition: transform 0.3s ease;
+        }
+
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color) 0%, transparent 100%);
+            transform-origin: left;
+            transform: scaleX(0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .page-title:hover {
+            transform: translateY(-3px);
+        }
+
+        .page-title:hover::after {
+            transform: scaleX(1);
+        }
+
+        .background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .footer {
+            backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
@@ -102,11 +240,7 @@
                 <p class="quote-author">- Unknown</p>
             </div>
 
-            <div class="quote">
-                <p class="quote-text">"I've missed more than 9,000 shots in my career. I've lost almost 300 games. Twenty-six times I've been trusted to take the game-winning shot and missed. I've failed over and over and over again in my life. And that is why I succeed."</p>
-                <p class="quote-author">- Michael Jordan</p>
-            </div>
-
+            
             <div class="quote">
                 <p class="quote-text">"You have to be true to yourself. And to be true to yourself you need a certain amount of freedom to express yourself. Without that you can achieve nothing."</p>
                 <p class="quote-author">- L.S.</p>
@@ -223,12 +357,239 @@
     </footer>
 
     <script>
+        // Dark mode toggle
         const darkModeToggle = document.getElementById('darkModeToggle');
         const documentBody = document.body;
       
+        // Check for saved theme preference or use preferred color scheme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            documentBody.classList.add('dark-mode');
+        }
+      
         darkModeToggle.addEventListener('click', () => {
             documentBody.classList.toggle('dark-mode');
+            // Save theme preference
+            const theme = documentBody.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
         });
+
+        // Liquid glass background animation
+        const canvas = document.getElementById('backgroundCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouseX = 0;
+        let mouseY = 0;
+        let isDarkMode = documentBody.classList.contains('dark-mode');
+
+        // Add color transition variables
+        let currentHue = 170; // Starting hue
+        let targetHue = 230; // Target hue
+        let hueTransitionSpeed = 0.05; // How fast colors change
+        let lastColorUpdate = 0;
+        const colorUpdateInterval = 5000; // Update target color every 5 seconds
+
+        function getNextTargetHue() {
+            // Generate a new target hue that's not too close to current
+            let newHue;
+            do {
+                newHue = Math.random() * 360;
+            } while (Math.abs(newHue - currentHue) < 60); // Ensure minimum difference
+            return newHue;
+        }
+
+        // Resize canvas to full window
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        // Handle mouse movement
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            // Add particles on mouse move occasionally
+            if (Math.random() > 0.9) {
+                createParticle(mouseX, mouseY);
+            }
+        });
+
+        // Handle touch movement for mobile
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouseX = e.touches[0].clientX;
+                mouseY = e.touches[0].clientY;
+                // Add particles on touch move
+                if (Math.random() > 0.7) {
+                    createParticle(mouseX, mouseY);
+                }
+            }
+        });
+
+        // Initialize particles
+        function init() {
+            resizeCanvas();
+            // Remove dark mode class if it exists
+            documentBody.classList.remove('dark-mode');
+            // Create initial particles
+            for (let i = 0; i < 40; i++) { // Reduced particle count for slower effect
+                createParticle(
+                    Math.random() * canvas.width,
+                    Math.random() * canvas.height
+                );
+            }
+            lastColorUpdate = performance.now();
+            requestAnimationFrame(animate);
+            
+            // Listen for theme changes
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.attributeName === 'class') {
+                        isDarkMode = documentBody.classList.contains('dark-mode');
+                    }
+                });
+            });
+            
+            observer.observe(documentBody, { attributes: true });
+            
+            // Handle window resize
+            window.addEventListener('resize', resizeCanvas);
+        }
+
+        // Create a new particle
+        function createParticle(x, y) {
+            const size = Math.random() * 60 + 20;
+            const speed = Math.random() * 0.4 + 0.05; // Even slower speed
+            const life = Math.random() * 300 + 300; // Much longer life
+            const hue = currentHue + (Math.random() * 30 - 15); // Slight variation from current hue
+            const color = isDarkMode ? 
+                `hsla(${hue}, 80%, 70%, ${Math.random() * 0.15 + 0.08})` : 
+                `hsla(${hue}, 80%, 85%, ${Math.random() * 0.12 + 0.08})`; // Lighter colors for light mode
+            
+            particles.push({
+                x: x || Math.random() * canvas.width,
+                y: y || Math.random() * canvas.height,
+                size: size,
+                color: color,
+                speedX: (Math.random() - 0.5) * speed,
+                speedY: (Math.random() - 0.5) * speed,
+                life: life,
+                maxLife: life,
+                hue: hue // Store individual particle hue
+            });
+        }
+
+        // Animation loop
+        function animate(timestamp) {
+            // Update colors gradually
+            if (timestamp - lastColorUpdate > colorUpdateInterval) {
+                targetHue = getNextTargetHue();
+                lastColorUpdate = timestamp;
+            }
+
+            // Smoothly transition current hue towards target
+            const hueDiff = targetHue - currentHue;
+            if (Math.abs(hueDiff) > 0.1) {
+                currentHue += hueDiff * hueTransitionSpeed;
+                // Keep hue in 0-360 range
+                currentHue = (currentHue + 360) % 360;
+            }
+
+            // Clear canvas with a very slight trace effect
+            ctx.fillStyle = isDarkMode ? 'rgba(15, 23, 30, 0.03)' : 'rgba(245, 247, 250, 0.03)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Update particles
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                
+                // Update particle color based on current hue
+                const particleHue = (p.hue + (currentHue - p.hue) * 0.01) % 360;
+                const opacity = p.life / p.maxLife;
+                const pColor = isDarkMode ?
+                    `hsla(${particleHue}, 80%, 70%, ${opacity * 0.3})` :
+                    `hsla(${particleHue}, 80%, 85%, ${opacity * 0.25})`;
+                
+                // Draw particle as a blurred circle
+                ctx.beginPath();
+                const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+                gradient.addColorStop(0, pColor);
+                gradient.addColorStop(1, 'transparent');
+                ctx.fillStyle = gradient;
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Move particle very slowly
+                p.x += p.speedX;
+                p.y += p.speedY;
+                
+                // Very gentle attraction to mouse
+                const dx = mouseX - p.x;
+                const dy = mouseY - p.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 250) { // Reduced interaction radius
+                    const force = 0.005; // Much gentler force
+                    p.speedX += (dx / dist) * force;
+                    p.speedY += (dy / dist) * force;
+                }
+                
+                // Limit speed
+                const maxSpeed = 0.5; // Reduced max speed
+                const currentSpeed = Math.sqrt(p.speedX * p.speedX + p.speedY * p.speedY);
+                if (currentSpeed > maxSpeed) {
+                    p.speedX = (p.speedX / currentSpeed) * maxSpeed;
+                    p.speedY = (p.speedY / currentSpeed) * maxSpeed;
+                }
+                
+                // Decrease life very slowly
+                p.life -= 0.5; // Slower life decrease
+                
+                // Remove dead particles
+                if (p.life <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                    // Create a new particle to maintain count
+                    createParticle();
+                }
+            }
+            
+            // Add very infrequent random particles
+            if (Math.random() > 0.995) {
+                createParticle();
+            }
+            
+            requestAnimationFrame(animate);
+        }
+
+        // Progressive blur effect for quotes on scroll
+        function updateBlur() {
+            const quotes = document.querySelectorAll('.quote');
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            quotes.forEach((quote, index) => {
+                const rect = quote.getBoundingClientRect();
+                const centerY = rect.top + rect.height / 2;
+                
+                // Calculate distance from center of viewport
+                const distanceFromCenter = Math.abs(centerY - windowHeight / 2);
+                const maxDistance = windowHeight / 2;
+                const blurAmount = Math.min(distanceFromCenter / maxDistance * 5, 5);
+                
+                // Apply blur based on distance from center
+                quote.style.filter = `blur(${blurAmount}px)`;
+                
+                // Scale and opacity based on position
+                const scale = 1 - (blurAmount / 10);
+                const opacity = 1 - (blurAmount / 10);
+                quote.style.transform = `scale(${scale}) translateY(-5px)`;
+                quote.style.opacity = opacity;
+            });
+        }
+
+        // Initialize animation and effects
+        window.addEventListener('load', init);
+        window.addEventListener('scroll', updateBlur);
     </script>
 </body>
 </html>
