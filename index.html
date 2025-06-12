@@ -83,6 +83,34 @@
             grid-column: 1 / -1;
         }
 
+        /* Text-only project card styles */
+        .text-card {
+            grid-column: span 1;
+            background: #FFFFFF;
+            border-radius: 12px;
+            aspect-ratio: 1/1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            text-align: right;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .text-card h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin: 0 0 0.5rem 0;
+            font-weight: 700;
+        }
+
+        .text-card p {
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            margin: 0;
+            opacity: 0.8;
+        }
+
         @media (max-width: 768px) {
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -408,6 +436,10 @@
         </header>
 
         <main class="projects-grid">
+            <div class="text-card">
+                <h2>PROJECTS</h2>
+                <p>some of my work</p>
+            </div>
             <div class="project-card">
                 <div class="project-image-container">
                     <img src="assets/inby.gif" alt="Inby Email Assistant" class="animated-gif" loop>
