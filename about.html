@@ -4,7 +4,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Luis</title>
+    <title>Luis Sanchez</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -36,145 +36,67 @@
             transition: background-color 0.3s ease;
         }
 
-        .hero-section {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('placeholder-hero.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.3s forwards;
-        }
-
-        .section {
-            padding: 6rem 2rem;
-            margin: 0 auto;
-            max-width: 1200px;
-        }
-
-        .section-alt {
-            background-color: var(--section-bg);
-        }
-
-        .grid-container {
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 1rem;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: 200px;
+            gap: 1.5rem;
             padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .profile-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 2rem;
-            display: block;
-            border: 4px solid var(--primary-color);
-        }
-
-        .dog-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 800px;
+            max-width: 1400px;
             margin: 0 auto;
-        }
-
-        .timeline-item {
-            margin-bottom: 3rem;
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 2px;
-            height: 100%;
-            background-color: var(--primary-color);
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: -4px;
-            top: 0;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-        }
-
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .skill-tag {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.9rem;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
         }
 
         .gallery-item {
             position: relative;
+            border-radius: 1rem;
             overflow: hidden;
-            border-radius: 0.5rem;
-            aspect-ratio: 1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .gallery-item.wide {
+            grid-column: span 4;
+        }
+
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+
+        .gallery-item.large {
+            grid-column: span 3;
+            grid-row: span 2;
+        }
+
+        .quote-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            z-index: 2;
+            width: 90%;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .text-overlay h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
 
         .gallery-item img {
@@ -188,243 +110,291 @@
             transform: scale(1.1);
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .gallery-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
         }
 
-        .back-link {
+        .gallery-item:hover .gallery-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .header {
             position: fixed;
-            top: 2rem;
-            left: 2rem;
-            z-index: 100;
-            color: white;
-            text-decoration: none;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .dark-mode .header {
+            background: rgba(17, 24, 39, 0.8);
+        }
+
+        .name {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .contact {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .contact a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact a:hover {
+            color: var(--primary-color);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
             gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            border-radius: 2rem;
-            transition: all 0.3s ease;
+            margin-top: 1rem;
         }
 
-        .back-link:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        .dark-mode-toggle {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 100;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            border: none;
+        .skill-tag {
+            background-color: rgba(37, 99, 235, 0.8);
             color: white;
-            padding: 0.75rem;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
         }
 
-        .dark-mode-toggle:hover {
-            background-color: rgba(0, 0, 0, 0.7);
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1rem;
             }
 
-            .section {
-                padding: 4rem 1rem;
+            .gallery-item.wide,
+            .gallery-item.large {
+                grid-column: span 2;
             }
         }
     </style>
 </head>
 <body>
-    <button id="darkModeToggle" class="dark-mode-toggle">
-        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-    </button>
-
-    <a href="index.html" class="back-link">
-        <span>←</span> Back to Portfolio
-    </a>
-
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">Luis Sanchez</h1>
-            <p class="hero-subtitle">dev.</p>
+    <header class="header">
+        <div class="name">Luis Sanchez</div>
+        <div class="contact">
+            <a href="mailto:luisanchez@berkeley.edu">luisanchez@berkeley.edu</a>
+            <a href="https://github.com/luisryu" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/suislanchez" target="_blank">LinkedIn</a>
         </div>
-    </section>
+    </header>
 
-    <section class="section" data-aos="fade-up">
-        <img src="placeholder-profile.jpg" alt="Luis Sanchez" class="profile-image">
-        <h2>Hello, I'm Luis! 👋</h2>
-        <p>I'm a Computer Science and Data Science student at UC Berkeley (Class of 2025) with a passion for AI, machine learning, and building impactful software solutions. When I'm not coding or working on AI projects, you can find me playing piano with the Cal NUJ Jazz Ensemble or mentoring at Berkeley CalHacks.</p>
-        
-        <div class="grid-container">
-            <div class="card" data-aos="fade-up">
-                <h3>🎓 Education</h3>
-                <p>UC Berkeley<br>B.S. Computer Science + Data Science<br>GPA: 3.7<br>Expected Graduation: December 2025</p>
-                <p>Relevant Coursework: AI, Machine Learning, OS, Data Structures/Algorithms, Computer Architecture, UX/UI, Computer Security, Internet Architecture, Efficient Algorithms, Algorithmic Economics, Database Systems, Agentic AI</p>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="100">
-                <h3>🎵 Music & Activities</h3>
-                <p>Cal NUJ Jazz Ensemble Pianist<br>Berkeley CalHacks Mentor<br>CS61A & CS61B Academic Intern</p>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <h3>📧 Contact</h3>
-                <p>Email: luisanchez@berkeley.edu<br>GitHub: luisryu<br>LinkedIn: suislanchez</p>
+    <div class="gallery-grid" style="margin-top: 80px;">
+        <!-- Intro Quote -->
+        <div class="gallery-item wide quote-card" data-aos="fade-up">
+            <p>"THIS IS ALL A PLACEHOLDER WORK IN PROGRESS Born in the Philippines, raised in Sacramento, and now exploring the intersection of technology and creativity at Berkeley. Every day is a new adventure in learning and growth."</p>
+        </div>
+
+        <!-- Piano -->
+        <div class="gallery-item large" data-aos="fade-up">
+            <img src="assets/echo.jpg" alt="Piano">
+            <div class="gallery-content">
+                <h3>Music & Soul</h3>
+                <p>Finding harmony in both code and keys. Proud pianist with Cal NUJ Jazz Ensemble, where every performance is a new story to tell.</p>
+                <div class="skills-container">
+                    <span class="skill-tag">Jazz Piano</span>
+                    <span class="skill-tag">Improvisation</span>
+                    <span class="skill-tag">Performance</span>
+                </div>
             </div>
         </div>
-    </section>
 
-    <section class="section section-alt" data-aos="fade-up">
-        <h2>Professional Journey</h2>
-        <div class="timeline">
-            <div class="timeline-item" data-aos="fade-left">
-                <h3>Duolingo - Software Engineer Intern</h3>
-                <p>May 2024 - July 2024<br>Engineered a machine learning search algorithm improving content discoverability for 5 million daily users, and reducing load times by +23% for Duolingo Stories</p>
-            </div>
-            <div class="timeline-item" data-aos="fade-left" data-aos-delay="100">
-                <h3>Chegg - Software Developer Intern</h3>
-                <p>June 2023 - August 2023<br>Developed and deployed a Named Entity Recognition model for search query intent detection using BERT and spaCy, improving search relevance for Chegg's Q&A AI platform, and speeding up query response time by +28%</p>
-            </div>
-            <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
-                <h3>Proctor and Gamble - Data Science Intern</h3>
-                <p>June 2022 - August 2022<br>Intern of the month award for dashboard using SQL and Power BI to enhance data analysis efficiency for D.S. R&D. Transitioned over 4 billion rows of data to daily-refreshed, point-in-time visualizations for over 400 employees</p>
+        <!-- Hiking -->
+        <div class="gallery-item tall" data-aos="fade-up" data-aos-delay="100">
+            <img src="assets/hackathon.jpg" alt="Hiking">
+            <div class="gallery-content">
+                <h3>Adventure Seeker</h3>
+                <p>Weekend warrior exploring Bay Area trails. From Mount Tam to Big Sur, every hike is a new perspective.</p>
             </div>
         </div>
-    </section>
 
-    <section class="section" data-aos="fade-up">
-        <h2>Featured Projects</h2>
-        <div class="grid-container">
-            <div class="card" data-aos="fade-up">
-                <h3>💹 SimuTrader</h3>
-                <p>Simulated real-time trading app with 30,000+ equities and 2000+ cryptocurrencies. Integrated RAG pipeline with LangChain powered by GPT4/Claude 3.5 for trade execution and query responses. Features include futures trading, crypto wallet integration, automated risk management, and portfolio analysis.</p>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="100">
-                <h3>🤖 PrepAlchemy</h3>
-                <p>Professional AI mock interviewer that analyzes linguistic meaning, facial expressions, and tone of voice. 3rd place Hume API Award Nominee at UC Berkeley CalHacks AI Hackathon. Features include various AI personalities, resume upload, and emotional analysis.</p>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <h3>🪑 Proper Bones</h3>
-                <p>E-commerce platform for sustainable upcycled furniture. Achieved $5,000+ MRR in 2024. Successfully fundraised $2000+ and sponsored $3000 for Bay Area Furniture Bank Fundraiser Gala.</p>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="300">
-                <h3>📧 Inby</h3>
-                <p>Full-featured email client with RAG AI agent that automatically labels & organizes incoming mail, drafts intelligent replies based on user-defined rules and contextual understanding.</p>
+        <!-- Coffee & Code -->
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+            <img src="assets/attention_equation.jpg" alt="Coffee & Code">
+            <div class="gallery-content">
+                <h3>Morning Rituals</h3>
+                <p>Coffee, coding, and problem-solving. Finding beauty in elegant solutions.</p>
             </div>
         </div>
-    </section>
 
-    <section class="section section-alt" data-aos="fade-up">
-        <h2>Technical Skills</h2>
-        <div class="skills-container">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">TypeScript</span>
-            <span class="skill-tag">Go</span>
-            <span class="skill-tag">Java</span>
-            <span class="skill-tag">C++</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">C</span>
-            <span class="skill-tag">Rust</span>
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">Next.js</span>
-            <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">Express</span>
-            <span class="skill-tag">Flask</span>
-            <span class="skill-tag">AWS</span>
-            <span class="skill-tag">GCP</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Git</span>
-            <span class="skill-tag">PyTorch</span>
-            <span class="skill-tag">TensorFlow</span>
-            <span class="skill-tag">LangChain</span>
-            <span class="skill-tag">PostgreSQL</span>
-            <span class="skill-tag">MongoDB</span>
-            <span class="skill-tag">Redis</span>
-        </div>
-    </section>
-
-    <section class="section" data-aos="fade-up">
-        <h2>Adventure Gallery</h2>
-        <div class="gallery">
-            <div class="gallery-item" data-aos="zoom-in">
-                <img src="placeholder-hiking.jpg" alt="Hiking Adventure">
-            </div>
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                <img src="placeholder-piano.jpg" alt="Piano Performance">
-            </div>
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
-                <img src="placeholder-travel.jpg" alt="Travel Memory">
-            </div>
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
-                <img src="placeholder-coding.jpg" alt="Coding Session">
+        <!-- Travel -->
+        <div class="gallery-item wide" data-aos="fade-up">
+            <img src="assets/duo.jpg" alt="Travel">
+            <div class="gallery-content">
+                <h3>Wanderlust</h3>
+                <p>Collecting memories across continents. Each journey teaches something new about technology, culture, and myself.</p>
             </div>
         </div>
-    </section>
+
+        <!-- Reading Spot -->
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+            <img src="assets/proper-bones.jpg" alt="Reading">
+            <div class="gallery-content">
+                <h3>Quiet Moments</h3>
+                <p>Finding peace in a good book and a cozy corner. Current read: The Psychology of Money</p>
+            </div>
+        </div>
+
+        <!-- Favorite Quote -->
+        <div class="gallery-item quote-card" data-aos="fade-up" data-aos-delay="200">
+            <p>"The best way to predict the future is to create it."</p>
+        </div>
+
+        <!-- Berkeley Life -->
+        <div class="gallery-item wide" data-aos="fade-up">
+            <img src="assets/prepalchemy-hero.jpg" alt="Berkeley">
+            <div class="gallery-content">
+                <h3>Campus Life</h3>
+                <p>From late-night coding sessions to morning walks through campus, Berkeley is more than a school - it's home.</p>
+            </div>
+        </div>
+
+        <!-- Gaming -->
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+            <img src="assets/clicks.jpg" alt="Gaming">
+            <div class="gallery-content">
+                <h3>Game Time</h3>
+                <p>When not coding, you might find me mastering new strategies in Chess or exploring virtual worlds.</p>
+            </div>
+        </div>
+
+        <!-- Community -->
+        <div class="gallery-item large" data-aos="fade-up" data-aos-delay="200">
+            <img src="assets/simutrader.png" alt="Community">
+            <div class="gallery-content">
+                <h3>Building Community</h3>
+                <p>Mentoring at CalHacks, teaching CS61A/B, and growing together with fellow tech enthusiasts.</p>
+            </div>
+        </div>
+
+        <!-- Inspiration -->
+        <div class="gallery-item" data-aos="fade-up">
+            <img src="assets/ngram.jpg" alt="Inspiration">
+            <div class="gallery-content">
+                <h3>Finding Inspiration</h3>
+                <p>In patterns, in nature, in data - beauty is everywhere when you know how to look.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS (Animate On Scroll)
         AOS.init({
             duration: 800,
-            once: true
+            once: true,
+            offset: 150
         });
 
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const documentBody = document.body;
-      
-        // Check for saved dark mode preference
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            documentBody.classList.add('dark-mode');
-        }
+        // Modal functionality
+        const modal = document.getElementById('modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModal = document.querySelector('.close-modal');
 
-        darkModeToggle.addEventListener('click', () => {
-            documentBody.classList.toggle('dark-mode');
-            localStorage.setItem('darkMode', 
-                documentBody.classList.contains('dark-mode') ? 'enabled' : 'disabled'
-            );
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const content = item.querySelector('.gallery-content').cloneNode(true);
+                modalContent.innerHTML = '';
+                modalContent.appendChild(content);
+                modal.style.display = 'flex';
             });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            observer.observe(item);
         });
     </script>
 </body>

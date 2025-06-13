@@ -132,7 +132,7 @@
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            gap: 0.4rem;
+            gap: 8px;
             transition: none !important;
             transform: none !important;
             will-change: auto !important;
@@ -144,6 +144,21 @@
         .project-title:hover {
             color: rgba(255, 255, 255, 0.9);
             transform: none !important;
+        }
+
+        .project-link-symbol {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            opacity: 0.7;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .project-title:hover .project-link-symbol {
+            transform: rotate(45deg);
+            opacity: 1;
         }
 
         .projects-grid {
@@ -194,6 +209,10 @@
         @media (max-width: 768px) {
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            .project-link-symbol {
+                width: 14px;
+                height: 14px;
             }
         }
 
@@ -581,18 +600,13 @@
             }
         }
 
-        /* Prevent arrow animation */
+        /* Hide both arrows */
         .project-arrow {
-            opacity: 1 !important;
-            transform: rotate(-45deg) !important;
-            transition: none !important;
-            font-size: 1.2em;
-            margin-left: 0.2rem;
+            display: none !important;
         }
 
-        .project-title:hover .project-arrow {
-            opacity: 1 !important;
-            transform: none !important;
+        .arrow {
+            display: none !important;
         }
     </style>
 </head>
@@ -650,7 +664,10 @@
                         <h3>   
                             <a href="https://github.com/suislanchez/inbie" class="project-title">
                                 Inbie
-                                <span class="project-arrow">→</span>
+                                <svg class="project-link-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 17L17 7"/>
+                                    <path d="M7 7h10v10"/>
+                                </svg>
                             </a>
                         </h3>
                         <p>Labels emails & drafts responses while you sleep, your way.</p>
@@ -673,7 +690,10 @@
                         <h3>
                             <a href="https://github.com/suislanchez/stock-sim-app" class="project-title">
                                 SimuTrader
-                                <span class="project-arrow">→</span>
+                                <svg class="project-link-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 17L17 7"/>
+                                    <path d="M7 7h10v10"/>
+                                </svg>
                             </a>
                         </h3>
                         <p>Options, equities, & crypto simulator with an AI Copilot assistant</p>
@@ -697,7 +717,10 @@
                         <h3>
                             <a href="https://www.properbones.com/" class="project-title">
                                 Proper Bones
-                                <span class="project-arrow">→</span>
+                                <svg class="project-link-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 17L17 7"/>
+                                    <path d="M7 7h10v10"/>
+                                </svg>
                             </a>
                         </h3>
                         <p>Ecommerce webstore, vintage furniture and decor upcycling. SF, Est. 2021</p>
@@ -717,7 +740,10 @@
                         <h3>
                             <a href="https://devpost.com/software/prepalchemy?_gl=1*nog8i9*_gcl_au*NjIxMDU3Njg3LjE3NDgzMzQ5MzY.*_ga*OTkwNzQxNzk2LjE3NDgzMzQ5MzY.*_ga_0YHJK3Y10M*czE3NDg1NDE3NTkkbzIkZzEkdDE3NDg1NDE3NjYkajUzJGwwJGgw" class="project-title">
                                 PrepAlchemy
-                                <span class="project-arrow">→</span>
+                                <svg class="project-link-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 17L17 7"/>
+                                    <path d="M7 7h10v10"/>
+                                </svg>
                             </a>
                         </h3>
                         <p>Ultra realistic professional AI interviewer, analyzing speech + facial expression</p>
@@ -739,7 +765,10 @@
                         <h3>   
                             <a href="blockchainbreakdown.html" class="project-title">
                                 Europa Drive
-                                <span class="project-arrow">→</span>
+                                <svg class="project-link-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 17L17 7"/>
+                                    <path d="M7 7h10v10"/>
+                                </svg>
                             </a>
                         </h3>
                         <p> File sharing & versioning + collaborative editing backend. AES-256 encrypted end-to-end. </p>
@@ -762,7 +791,10 @@
                         <h3>   
                             <a href="https://github.com/suislanchez/roam-fm" class="project-title">
                                 Roam-FM
-                                <span class="project-arrow">→</span>
+                                <svg class="project-link-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 17L17 7"/>
+                                    <path d="M7 7h10v10"/>
+                                </svg>
                             </a>
                         </h3>
                         <p>Interactive streaming platform for 45,000+ live radio stations around the world, 24/7.</p>
@@ -785,7 +817,10 @@
                         <h3>
                             <a href="https://solplay.de/sevenseas/index.html" class="project-title">
                                 Seven Seas
-                                <span class="project-arrow">→</span>
+                                <svg class="project-link-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 17L17 7"/>
+                                    <path d="M7 7h10v10"/>
+                                </svg>
                             </a>
                         </h3>
                         <p>Command your NFTs as avatars and ships in your naval fleet.</p>
@@ -809,7 +844,10 @@
                         <h3>
                             <a href="https://github.com/suislanchez/traceroute" class="project-title">
                                 IP Visualizer
-                                <span class="project-arrow">→</span>
+                                <svg class="project-link-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 17L17 7"/>
+                                    <path d="M7 7h10v10"/>
+                                </svg>
                             </a>
                         </h3>
                         <p>Visualize the route your tracking IP takes to reach any website.</p>
@@ -831,7 +869,10 @@
                         <h3>
                             <a href="https://github.com/suislanchez/n-Wordnet" class="project-title">
                                n-Wordnet
-                                <span class="project-arrow">→</span>
+                                <svg class="project-link-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 17L17 7"/>
+                                    <path d="M7 7h10v10"/>
+                                </svg>
                             </a>
                         </h3>
                         <p>Compare the frequency of any words + phrases over time (1700s-2020s).</p>
@@ -855,7 +896,10 @@
                         <h3>   
                             <a href="https://github.com/suislanchez/pacmanRec" class="project-title">
                                 Pacman Game
-                                <span class="project-arrow">→</span>
+                                <svg class="project-link-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 17L17 7"/>
+                                    <path d="M7 7h10v10"/>
+                                </svg>
                             </a>
                         </h3>
                         <p>The original 1980 game, programmed from scratch.</p>
