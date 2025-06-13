@@ -64,7 +64,7 @@
         }
 
         .project-overlay-content {
-            flex-grow: 1;
+ 
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -74,7 +74,7 @@
 
         .project-overlay h3 {
             margin: 0 0 1rem 0;
-            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            font-size: clamp(0.7rem, 2vw, 1.2rem);
             color: white;
             font-weight: 500;
             letter-spacing: 0.3px;
@@ -83,7 +83,7 @@
 
         .project-overlay p {
             margin: 0 0 1.5rem 0;
-            font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+            font-size: clamp(0.6rem, 1.5vw, 0.9rem);
             line-height: 1.4;
             color: rgba(255, 255, 255, 0.9);
             font-weight: 400;
@@ -133,11 +133,17 @@
             align-items: center;
             justify-content: flex-start;
             gap: 0.4rem;
-            transition: all 0.2s ease;
+            transition: none !important;
+            transform: none !important;
+            will-change: auto !important;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem) !important;
+            font-weight: 500;
         }
 
         .project-title:hover {
             color: rgba(255, 255, 255, 0.9);
+            transform: none !important;
         }
 
         .projects-grid {
@@ -527,16 +533,16 @@
             }
 
             .project-overlay h3 a {
-                transform: none;
-                transition: transform 0.2s ease;
+                transform: none !important;
+                transition: none !important;
             }
 
             .project-overlay h3 a:hover {
-                transform: scale(1.05); /* Subtler scale effect for mobile */
+                transform: none !important;
             }
 
             .project-overlay h3 a:after {
-                transform: translateX(4px) scale(1.05); /* Match the smaller scale */
+                transform: none !important;
             }
 
             .project-overlay p {
@@ -558,17 +564,35 @@
                 padding: 0.1rem 0.35rem;
                 margin: 0.1rem;
             }
+
+            .project-title {
+                font-size: clamp(1rem, 2.2vw, 1.3rem) !important;
+            }
         }
 
         /* Keep desktop hover effects above 768px */
         @media (min-width: 769px) {
             .project-overlay h3 a:hover {
-                transform: scale(1.1); /* Keep original scale for desktop */
+                transform: none !important;
             }
-
+            
             .project-overlay h3 a:after {
-                transform: translateX(4px) scale(1.1);
+                transform: none !important;
             }
+        }
+
+        /* Prevent arrow animation */
+        .project-arrow {
+            opacity: 1 !important;
+            transform: rotate(-45deg) !important;
+            transition: none !important;
+            font-size: 1.2em;
+            margin-left: 0.2rem;
+        }
+
+        .project-title:hover .project-arrow {
+            opacity: 1 !important;
+            transform: none !important;
         }
     </style>
 </head>
@@ -1283,3 +1307,4 @@
     </script>
 </body>
 </html>
+
