@@ -11,6 +11,28 @@
     <script src="https://unpkg.com/motion@10.16.4/dist/motion.js"></script>
     <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css">
     <style>
+        html, body {
+            overflow-y: scroll;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Ensure content doesn't shift when scrollbar appears/disappears */
+        body {
+            width: 100vw;
+            overflow-x: hidden;
+            position: relative;
+        }
+
         .name-link {
             color: inherit;
             text-decoration: none;
@@ -51,8 +73,8 @@
         .project-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.4);  /* Slightly darker base overlay */
-            backdrop-filter: blur(4px);      /* Increased base blur */
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             opacity: 0;
             transition: all 0.3s ease;
@@ -61,15 +83,24 @@
             justify-content: flex-start;
             padding: 2rem;
             box-sizing: border-box;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .project-overlay::-webkit-scrollbar {
+            display: none;
         }
 
         .project-overlay-content {
- 
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             width: 100%;
             box-sizing: border-box;
+            min-height: min-content;
         }
 
         .project-overlay h3 {
@@ -99,6 +130,7 @@
             width: 100%;
             box-sizing: border-box;
             padding-right: 0.5rem;
+            margin-top: auto;
         }
 
         .project-tag {
@@ -548,21 +580,14 @@
             }
 
             .project-overlay {
-                opacity: 0;
-                padding: 0.75rem;
+                padding: 1rem;
                 background: rgba(0, 0, 0, 0.6);
                 backdrop-filter: blur(8px);
                 -webkit-backdrop-filter: blur(8px);
-                overflow-y: auto;
-                max-height: 100%;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none; /* Firefox */
-                -ms-overflow-style: none; /* IE and Edge */
             }
 
-            /* Hide scrollbar for Chrome, Safari and Opera */
-            .project-overlay::-webkit-scrollbar {
-                display: none;
+            .project-overlay-content {
+                gap: 0.5rem;
             }
 
             .project-overlay h3 {
@@ -590,11 +615,9 @@
             }
 
             .project-tags {
-                display: flex;
-                flex-wrap: wrap;
                 gap: 0.25rem;
                 margin-top: 0.35rem;
-                padding-bottom: 0.5rem; /* Add space at bottom for scrolling */
+                padding-bottom: 0.5rem;
             }
 
             .project-tag {
@@ -659,12 +682,17 @@
                                     <circle cx="4" cy="4" r="2"></circle>
                                 </svg>
                             </a>
+                            <a href="https://github.com/suislanchez" target="_blank">
+                                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
+                            </a>
                         </div>
                         <div class="fluid-animation">
                             <div class="fluid-blob"></div>
                         </div>
                     </div>
-                    <p class="intro-text">hello! I'm luis, a Software Developer at UC Berkeley. Check out my work below, or take a look at my most recent stuff on X/twitter</p>
+                    <p class="intro-text">hello! I'm luis, a Software Developer at UC Berkeley. Check out my work below, or take a look at my most recent projects on X/twitter</p>
                 </div>
             </div>
         </header>
@@ -828,7 +856,7 @@
                 <div class="project-overlay">
                     <div class="project-overlay-content">
                         <h3>   
-                            <a href="https://github.com/suislanchez/roam-fm" class="project-title">
+                            <a href="https://roam-fm.vercel.app/" class="project-title">
                                 Roam-FM
                                 <span class="project-link-symbol">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
