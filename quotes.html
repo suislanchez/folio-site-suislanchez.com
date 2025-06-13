@@ -22,6 +22,7 @@
             --glass-border: rgba(20, 20, 20, 0.18);
             --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             --accent-color: var(--accent-color-dark);
+            background: transparent !important;
         }
 
         body {
@@ -37,22 +38,31 @@
         .quotes-container {
             max-width: 800px;
             margin: 2rem auto;
-            padding: 0 1rem;
+            padding: 2rem 1rem 6rem 1rem;
             perspective: 1000px;
+            position: relative;
         }
 
         .quote {
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             padding: 2rem;
             border-radius: 16px;
-            background: rgba(255, 255, 255, 0.35);
+            background: var(--glass-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        body.dark-mode .quote {
+            background: rgba(10, 10, 10, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
         }
 
         .quote::before {
@@ -88,7 +98,7 @@
             0% {
                 top: -100%;
                 left: -100%;
-                opacity: 0.3;
+                opacity: 1;
             }
             100% {
                 top: 0%;
@@ -110,6 +120,16 @@
             mix-blend-mode: overlay;
             pointer-events: none;
             z-index: 2;
+        }
+
+        body.dark-mode .quote-text {
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-mode .quote-author {
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
         }
 
         .quote-text {
@@ -165,10 +185,13 @@
             background: rgba(255, 255, 255, 0.15);
         }
 
-        .back-link:hover {
-            color: var(--text-color);
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(-5px);
+        body.dark-mode .back-link {
+            color: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-mode .back-link:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .page-title {
@@ -183,6 +206,10 @@
             -webkit-background-clip: initial;
             -webkit-text-fill-color: initial;
             transition: transform 0.3s ease;
+        }
+
+        body.dark-mode .page-title {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .page-title::after {
@@ -244,7 +271,7 @@
 
     <div class="container">
         <a href="index.html" class="back-link">← Back to Portfolio</a>
-        <h1 class="page-title">quotes and corollaries</h1>
+        <h1 class="page-title">quotes i like</h1>
         
         <div class="quotes-container">
             <div class="quote">
@@ -257,31 +284,17 @@
                 <p class="quote-author">- Unknown</p>
             </div>
 
+
+
+          
             
-            <div class="quote">
-                <p class="quote-text">"You have to be true to yourself. And to be true to yourself you need a certain amount of freedom to express yourself. Without that you can achieve nothing."</p>
-                <p class="quote-author">- L.S.</p>
-            </div>
-
-            <div class="quote">
-                <p class="quote-text">"See, your murderers come with smiles, they come as your friends, the people who've cared for you all of your life, and they always seem to come at a time when you're at your weakest and most in need of their help."</p>
-                <p class="quote-author">- Henry Hill</p>
-            </div>
-
-            <div class="quote">
-                <p class="quote-text">"80% of outcomes stems from 20% of inputs or causes."</p>
-                <p class="quote-author">- Vilfredo Pareto</p>
-            </div>
 
             <div class="quote">
                 <p class="quote-text">"I'll start tomorrow = I'll quit today."</p>
                 <p class="quote-author">- Unknown</p>
             </div>
 
-            <div class="quote">
-                <p class="quote-text">"Your story may not have such a happy beginning but that does not make you who you are, it is the rest of it - who you choose to be."</p>
-                <p class="quote-author">- SoothSayer</p>
-            </div>
+     
 
             <div class="quote">
                 <p class="quote-text">"In order to love who you are you cannot hate the experiences that shaped you."</p>
@@ -289,7 +302,7 @@
             </div>
 
             <div class="quote">
-                <p class="quote-text">"You could be the master of your fate. You could be the captain of your soul. But you have to realize that life is coming from you and not at you, and that takes time."</p>
+                <p class="quote-text">"You could be the master of your fate. You could be the captain of your soul. But you have to realize that life is coming from you and not at you."</p>
                 <p class="quote-author">- Timothée Chalamet</p>
             </div>
 
@@ -314,18 +327,14 @@
             </div>
 
             <div class="quote">
-                <p class="quote-text">"Everyone you meet is fighting a battle you know nothing about. Be kind. Always."</p>
+                <p class="quote-text">"Everyone you meet is fighting a battle you know nothing about."</p>
                 <p class="quote-author">- Robin Williams</p>
             </div>
 
-            <div class="quote">
-                <p class="quote-text">"You don't know about real loss, 'cause it only occurs when you've loved something more than you love yourself. And I doubt you've ever dared to love anybody that much."</p>
-                <p class="quote-author">- Robin Williams</p>
-            </div>
-
+           
             <div class="quote">
                 <p class="quote-text">"If every time someone ask you a question, and you have to say the right answer, your whole life is a test."</p>
-                <p class="quote-author">- Ye</p>
+                <p class="quote-author">Unknown</p>
             </div>
 
             <div class="quote">
@@ -333,10 +342,6 @@
                 <p class="quote-author">- Marion J. Levy Jr.</p>
             </div>
 
-            <div class="quote">
-                <p class="quote-text">"Build a system that even a fool can use and only fools will use it."</p>
-                <p class="quote-author">- Edward A. Murphy Jr.</p>
-            </div>
 
             <div class="quote">
                 <p class="quote-text">"Nature always sides with the hidden flaw."</p>
@@ -356,6 +361,26 @@
             <div class="quote">
                 <p class="quote-text">"Use yourself against you for your own good."</p>
                 <p class="quote-author">- Unknown</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"80% of outcomes stems from 20% of inputs or causes."</p>
+                <p class="quote-author">- Vilfredo Pareto</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"If you consume enough advice, it all cancels out. Find out for yourself what works for you."</p>
+                <p class="quote-author">- Unknown</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"Where we choose to put our attention changes our brain, which in time can change how we see and interact with the world."</p>
+                <p class="quote-author">- Margaret Mead</p>
+            </div>
+
+            <div class="quote">
+                <p class="quote-text">"Doubt like wind tests a tree<br>not to uproot it,<br>but to help it know<br>exactly how deep it grows"</p>
+                <p class="quote-author">- AI Generated</p>
             </div>
         </div>
     </div>
@@ -400,11 +425,11 @@
         let isDarkMode = documentBody.classList.contains('dark-mode');
 
         // Add color transition variables
-        let currentHue = 170; // Starting hue
-        let targetHue = 230; // Target hue
-        let hueTransitionSpeed = 0.05; // How fast colors change
+        let currentHue = 160; // Starting hue
+        let targetHue = 250; // Target hue
+        let hueTransitionSpeed = 0.5; // How fast colors change
         let lastColorUpdate = 0;
-        const colorUpdateInterval = 5000; // Update target color every 5 seconds
+        const colorUpdateInterval = 1000; // Update target color every 5 seconds
 
         function getNextTargetHue() {
             // Generate a new target hue that's not too close to current
@@ -513,7 +538,7 @@
             }
 
             // Clear canvas with a very slight trace effect
-            ctx.fillStyle = isDarkMode ? 'rgba(15, 23, 30, 0.03)' : 'rgba(245, 247, 250, 0.03)';
+            ctx.fillStyle = isDarkMode ? 'rgba(0, 0, 0, 0.02)' : 'rgba(245, 247, 250, 0.03)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             // Update particles
@@ -524,7 +549,7 @@
                 const particleHue = (p.hue + (currentHue - p.hue) * 0.01) % 360;
                 const opacity = p.life / p.maxLife;
                 const pColor = isDarkMode ?
-                    `hsla(${particleHue}, 80%, 70%, ${opacity * 0.3})` :
+                    `hsla(${particleHue}, 70%, 50%, ${opacity * 0.4})` : // Darker, more saturated colors for dark mode
                     `hsla(${particleHue}, 80%, 85%, ${opacity * 0.25})`;
                 
                 // Draw particle as a blurred circle
@@ -597,8 +622,8 @@
                 quote.style.filter = `blur(${blurAmount}px)`;
                 
                 // Scale and opacity based on position
-                const scale = 1 - (blurAmount / 10);
-                const opacity = 1 - (blurAmount / 10);
+                const scale = 1 - (blurAmount / 8);
+                const opacity = 1 - (blurAmount / 8);
                 quote.style.transform = `scale(${scale}) translateY(-5px)`;
                 quote.style.opacity = opacity;
             });

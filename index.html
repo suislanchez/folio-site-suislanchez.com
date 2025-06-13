@@ -50,23 +50,30 @@
 
         .project-overlay {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            top: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.1));
-            backdrop-filter: blur(3px);
-            color: white;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);  /* Slightly darker base overlay */
+            backdrop-filter: blur(4px);      /* Increased base blur */
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 1.5rem;
-            height: 100%;
-            max-height: 100%;
+            justify-content: flex-start;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .project-overlay-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .project-overlay h3 {
-            margin: 0 0 0.75rem 0;
+            margin: 0 0 1rem 0;
             font-size: clamp(0.9rem, 2vw, 1.2rem);
             color: white;
             font-weight: 500;
@@ -75,22 +82,48 @@
         }
 
         .project-overlay p {
-            margin: 0;
+            margin: 0 0 1.5rem 0;
             font-size: clamp(0.7rem, 1.5vw, 0.9rem);
             line-height: 1.4;
-            max-height: none;
-            overflow: visible;
-            display: block;
             color: rgba(255, 255, 255, 0.9);
             font-weight: 400;
             text-align: left;
-            padding-right: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            width: 100%;
+            box-sizing: border-box;
+            padding-right: 0.5rem;
+        }
+
+        .project-tag {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .project-tag:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.2);
         }
 
         .project-card:hover .project-overlay {
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            max-height: 100%;
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.6);  /* Darker on hover */
+            backdrop-filter: blur(8px);      /* More blur on hover */
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .project-title {
@@ -428,6 +461,37 @@
             opacity: 0.8;
             max-width: 80%;
         }
+
+        /* Tag color categories - keeping the same colors but using them more flexibly */
+        .tag-color-1 {
+            background: rgba(147, 51, 234, 0.2);  /* Purple */
+            border-color: rgba(147, 51, 234, 0.3);
+        }
+
+        .tag-color-2 {
+            background: rgba(59, 130, 246, 0.2);  /* Blue */
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .tag-color-3 {
+            background: rgba(16, 185, 129, 0.2);  /* Green */
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .tag-color-4 {
+            background: rgba(245, 158, 11, 0.2);  /* Orange */
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .tag-color-5 {
+            background: rgba(239, 68, 68, 0.2);  /* Red */
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .tag-color-6 {
+            background: rgba(139, 92, 246, 0.2);  /* Indigo */
+            border-color: rgba(139, 92, 246, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -465,7 +529,7 @@
                             <div class="fluid-blob"></div>
                         </div>
                     </div>
-                    <p class="intro-text">hello! I'm luis, a Software Developer at UC Berkeley, prev Duolingo, Chegg. Check out my work below, or take a look at my most recent stuff on X/twitter</p>
+                    <p class="intro-text">hello! I'm luis, a Software Developer at UC Berkeley. Check out my work below, or take a look at my most recent stuff on X/twitter</p>
                 </div>
             </div>
         </header>
@@ -473,20 +537,28 @@
         <main class="projects-grid">
             <div class="text-card">
                 <h2>PROJECTS</h2>
-                <p>that i made.</p>
+                <p>that i made</p>
             </div>
             <div class="project-card">
                 <div class="project-image-container">
                     <img src="assets/inby.gif" alt="Inby Email Assistant" class="animated-gif" loop>
                 </div>
                 <div class="project-overlay">
-                    <h3>   
-                        <a href="https://github.com/suislanchez/inbie" class="project-title">
-                            Inbie
-                            <span class="project-arrow">→</span>
-                        </a>
-                    </h3>
-                    <p>Categorizes emails and drafts responses while you sleep. Fully customizable rules.</p>
+                    <div class="project-overlay-content">
+                        <h3>   
+                            <a href="https://github.com/suislanchez/inbie" class="project-title">
+                                Inbie
+                                <span class="project-arrow">→</span>
+                            </a>
+                        </h3>
+                        <p>Labels emails & drafts responses while you sleep, your way.</p>
+                        <div class="project-tags">
+                            <span class="project-tag tag-color-1">autonomous AI</span>
+                            <span class="project-tag tag-color-2">email client</span>
+                            <span class="project-tag tag-color-3">RAG</span>
+                            <span class="project-tag tag-color-4">workflow automation</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="project-card">
@@ -494,13 +566,23 @@
                     <img src="assets/simutrader.png" alt="SimuTrader" class="png">
                 </div>
                 <div class="project-overlay">
-                    <h3>
-                        <a href="https://github.com/suislanchez/stock-sim-app" class="project-title">
-                            SimuTrader
-                            <span class="project-arrow">→</span>
-                        </a>
-                    </h3>
-                    <p>Real Time simulated options, equities, and crypto trading platform with RAG AI Agent for trade & strategy execution, and real time market data retrieval.</p>
+                    <div class="project-overlay-content">
+                        <h3>
+                            <a href="https://github.com/suislanchez/stock-sim-app" class="project-title">
+                                SimuTrader
+                                <span class="project-arrow">→</span>
+                            </a>
+                        </h3>
+                        <p>Options, equities, & crypto simulator w/ AI Copilot assistant</p>
+                        <div class="project-tags">
+                            <span class="project-tag tag-color-1">LangChain</span>
+                            <span class="project-tag tag-color-2">AI agent</span>
+                            <span class="project-tag tag-color-3">fintech</span>
+                            <span class="project-tag tag-color-4">social trading</span>
+                            <span class="project-tag tag-color-5">RAG</span>
+
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -508,26 +590,41 @@
             <div class="project-card">
                 <img src="assets/proper-bones.jpg" alt="Proper Bones">
                 <div class="project-overlay">
-                     <h3>
-        <a href="https://www.properbones.com/" class="project-title">
-            Proper Bones
-            <span class="project-arrow">→</span>
-        </a>
-    </h3>
-                    <p>A full-stack retail website for selling vintage furniture and decor upcycling. Est. 2021.</p>
+                    <div class="project-overlay-content">
+                        <h3>
+                            <a href="https://www.properbones.com/" class="project-title">
+                                Proper Bones
+                                <span class="project-arrow">→</span>
+                            </a>
+                        </h3>
+                        <p>Ecommerce webstore, vintage furniture and decor upcycling. SF, Est. 2021</p>
+                        <div class="project-tags">
+                            <span class="project-tag tag-color-1">OAuth2</span>
+                            <span class="project-tag tag-color-2">Stripe</span>
+                            <span class="project-tag tag-color-3">UI/UX</span>
+                            <span class="project-tag tag-color-4">ecommerce</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="project-card">
                 <img src="assets/hackathon.jpg" alt="hackathon">
                 <div class="project-overlay">
-                    <h3>
-                        <a href="https://devpost.com/software/prepalchemy?_gl=1*nog8i9*_gcl_au*NjIxMDU3Njg3LjE3NDgzMzQ5MzY.*_ga*OTkwNzQxNzk2LjE3NDgzMzQ5MzY.*_ga_0YHJK3Y10M*czE3NDg1NDE3NTkkbzIkZzEkdDE3NDg1NDE3NjYkajUzJGwwJGgw" class="project-title">
-                            PrepAlchemy
-                            <span class="project-arrow">→</span>
-                        </a>
-                    </h3>
-                    
-                    <p>Professional mock interview empathiic voice model, analyzing speech + facial expression to respond ultra realistically. </p>
+                    <div class="project-overlay-content">
+                        <h3>
+                            <a href="https://devpost.com/software/prepalchemy?_gl=1*nog8i9*_gcl_au*NjIxMDU3Njg3LjE3NDgzMzQ5MzY.*_ga*OTkwNzQxNzk2LjE3NDgzMzQ5MzY.*_ga_0YHJK3Y10M*czE3NDg1NDE3NTkkbzIkZzEkdDE3NDg1NDE3NjYkajUzJGwwJGgw" class="project-title">
+                                PrepAlchemy
+                                <span class="project-arrow">→</span>
+                            </a>
+                        </h3>
+                        <p>Ultra realistic professional AI interviewer, analyzing speech + facial expression</p>
+                        <div class="project-tags">
+                            <span class="project-tag tag-color-1">interview coach</span>
+                            <span class="project-tag tag-color-2">empathic voice AI</span>
+                            <span class="project-tag tag-color-3">Typescript</span>
+                            <span class="project-tag tag-color-4">RAG</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="project-card">
@@ -535,13 +632,21 @@
                     <img src="assets/europa.gif" alt="Europa Drive Animation" class="animated-gif" loop>
                 </div>
                 <div class="project-overlay">
-                    <h3>   
-                        <a href="blockchainbreakdown.html" class="project-title">
-                            Europa Drive
-                            <span class="project-arrow">→</span>
-                        </a>
-                    </h3>
-                    <p> Cryptographically secure file sharing database program backend. (Dropbox clone) </p>
+                    <div class="project-overlay-content">
+                        <h3>   
+                            <a href="blockchainbreakdown.html" class="project-title">
+                                Europa Drive
+                                <span class="project-arrow">→</span>
+                            </a>
+                        </h3>
+                        <p> File sharing & versioning + collaborative editing backend. AES-256 encrypted end-to-end. </p>
+                        <div class="project-tags">
+                            <span class="project-tag tag-color-1">Go</span>
+                            <span class="project-tag tag-color-2">cryptography</span>
+                            <span class="project-tag tag-color-3">collaboration</span>
+                            <span class="project-tag tag-color-4">encryption</span>
+                        </div>
+                    </div>
                 </div>
             </div>
            
@@ -550,13 +655,21 @@
                     <img src="assets/roamfm.gif" alt="Roam-FM Radio Globe" class="animated-gif" loop>
                 </div>
                 <div class="project-overlay">
-                    <h3>   
-                        <a href="https://github.com/suislanchez/roam-fm" class="project-title">
-                            Roam-FM
-                            <span class="project-arrow">→</span>
-                        </a>
-                    </h3>
-                    <p>Explore an interactive 3D globe to tune into 45,000+ live radio stations around the world, filter by mood or genre, beautifully visualized 24/7 playing.</p>
+                    <div class="project-overlay-content">
+                        <h3>   
+                            <a href="https://github.com/suislanchez/roam-fm" class="project-title">
+                                Roam-FM
+                                <span class="project-arrow">→</span>
+                            </a>
+                        </h3>
+                        <p>Interactive streaming platform for 45,000+ live radio stations around the world, 24/7.</p>
+                        <div class="project-tags">
+                            <span class="project-tag tag-color-1">music streamer</span>
+                            <span class="project-tag tag-color-2">mobile app</span>
+                            <span class="project-tag tag-color-3">radio browser</span>
+                            <span class="project-tag tag-color-4">React</span>
+                        </div>
+                    </div>
                 </div>
             </div>
    
@@ -565,14 +678,23 @@
                     <img src="assets/satoshi-sailors.gif" alt="Satoshi Sailors Animation" class="animated-gif" loop>
                 </div>
                 <div class="project-overlay">
-                    <h3>
-                        <a href="https://solplay.de/sevenseas/index.html" class="project-title">
-                            Satoshi Sailors: Seven Seas
-                            <span class="project-arrow">→</span>
-                        </a>
-                    </h3>
-                    <p>Command your NFTs as avatars and ships to deploy, loot your enemies, and use your bounty to upgrade your destructive power. 
-                    </p>
+                    <div class="project-overlay-content">
+                        <h3>
+                            <a href="https://solplay.de/sevenseas/index.html" class="project-title">
+                                Seven Seas
+                                <span class="project-arrow">→</span>
+                            </a>
+                        </h3>
+                        <p>Command your NFTs as avatars and ships in your naval fleet.</p>
+                        <div class="project-tags">
+                            <span class="project-tag tag-color-1">Unity</span>
+                            <span class="project-tag tag-color-2">Solana</span>
+                            <span class="project-tag tag-color-3">NFT</span>
+                            <span class="project-tag tag-color-4">Web3</span>
+                            <span class="project-tag tag-color-5">multiplayer</span>
+                            <span class="project-tag tag-color-6">on-chain game</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="project-card">
@@ -580,25 +702,44 @@
                     <img src="assets/traceroute.gif" alt="Traceroute Animation" class="animated-gif" loop>
                 </div>
                 <div class="project-overlay">
-                    <h3>
-                        <a href="https://github.com/suislanchez/traceroute" class="project-title">
-                            IP Traceroute Visualizer
-                            <span class="project-arrow">→</span>
-                        </a>
-                    </h3>
-                    <p>Visualize the route your tracking IP takes to reach any website. </p>
+                    <div class="project-overlay-content">
+                        <h3>
+                            <a href="https://github.com/suislanchez/traceroute" class="project-title">
+                                IP Visualizer
+                                <span class="project-arrow">→</span>
+                            </a>
+                        </h3>
+                        <p>Visualize the route your tracking IP takes to reach any website.</p>
+                        <div class="project-tags">
+                            <span class="project-tag tag-color-1">UDP</span>
+                            <span class="project-tag tag-color-2">IP</span>
+                            <span class="project-tag tag-color-3">traceroute</span>
+                            <span class="project-tag tag-color-4">CLI-tool</span>
+                            <span class="project-tag tag-color-5">Python</span>
+                            <span class="project-tag tag-color-6">WebGL</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="project-card">
                 <img src="assets/ngram.jpg" alt="Ngram">
                 <div class="project-overlay">
-                    <h3>
-                        <a href="https://github.com/suislanchez/n-Wordnet" class="project-title">
-                           n-Wordnet
-                            <span class="project-arrow">→</span>
-                        </a>
-                    </h3>
-                    <p> View and compare the frequency of words and phrases in text over time. </p>
+                    <div class="project-overlay-content">
+                        <h3>
+                            <a href="https://github.com/suislanchez/n-Wordnet" class="project-title">
+                               n-Wordnet
+                                <span class="project-arrow">→</span>
+                            </a>
+                        </h3>
+                        <p>Compare the frequency of any words + phrases over time (1700s-2020s).</p>
+                        <div class="project-tags">
+                            <span class="project-tag tag-color-1">ML</span>
+                            <span class="project-tag tag-color-2">Java</span>
+                            <span class="project-tag tag-color-3">data mining</span>
+                            <span class="project-tag tag-color-4">NLP</span>
+                            <span class="project-tag tag-color-5">semantic search</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -607,15 +748,22 @@
                     <img src="assets/200w.gif" alt="Pacman Animation" class="animated-gif" loop>
                 </div>
                 <div class="project-overlay">
-                    <h3>   
-                        <a href="https://github.com/suislanchez/pacmanRec" class="project-title">
-                            Pacman Game Recreation
-                            <span class="project-arrow">→</span>
-                        </a>
-                    </h3>
-                    <p> The original 1980 game, programmed from scratch.  </p>
+                    <div class="project-overlay-content">
+                        <h3>   
+                            <a href="https://github.com/suislanchez/pacmanRec" class="project-title">
+                                Pacman Game
+                                <span class="project-arrow">→</span>
+                            </a>
+                        </h3>
+                        <p>The original 1980 game, programmed from scratch.</p>
+                        <div class="project-tags">
+                            <span class="project-tag tag-color-1">Python</span>
+                            <span class="project-tag tag-color-2">state machine</span>
+                            <span class="project-tag tag-color-3">AI pathfinding</span>
+                        </div>
+                    </div>
                 </div>
-                </div>
+            </div>
                 </main>
             </div>
           
