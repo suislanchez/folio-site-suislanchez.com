@@ -1,47 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Luis</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
-        .about-container {
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #4f46e5;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --section-bg: #f3f4f6;
+            --card-bg: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        body.dark-mode {
+            --text-color: #f3f4f6;
+            --bg-color: #111827;
+            --section-bg: #1f2937;
+            --card-bg: #374151;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('placeholder-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .section {
+            padding: 6rem 2rem;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .section-alt {
+            background-color: var(--section-bg);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 2rem;
+            display: block;
+            border: 4px solid var(--primary-color);
+        }
+
+        .dog-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            position: relative;
             max-width: 800px;
             margin: 0 auto;
-            padding: 2rem;
         }
 
-        .about-header {
-            text-align: center;
+        .timeline-item {
             margin-bottom: 3rem;
+            position: relative;
+            padding-left: 2rem;
         }
 
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: var(--primary-color);
         }
 
-        .about-text p {
-            margin-bottom: 1.5rem;
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
-            color: var(--text-color);
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 100;
+            color: white;
             text-decoration: none;
-            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            transition: all 0.3s ease;
         }
 
         .back-link:hover {
-            opacity: 0.7;
+            background-color: rgba(0, 0, 0, 0.7);
         }
 
-        .back-link span {
-            margin-right: 0.5rem;
+        .dark-mode-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: none;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
         }
     </style>
 </head>
@@ -63,35 +272,129 @@
         </svg>
     </button>
 
-    <div class="about-container">
-        <a href="index.html" class="back-link">
-            <span>←</span> Back to Portfolio
-        </a>
+    <a href="index.html" class="back-link">
+        <span>←</span> Back to Portfolio
+    </a>
 
-        <div class="about-header">
-            <h1>About Me</h1>
-            <p>Software Developer at UC Berkeley</p>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Luis Perez</h1>
+            <p class="hero-subtitle">Software Developer & Creative Mind</p>
         </div>
+    </section>
 
-        <div class="about-text">
-            <p>
-                Hello! I'm Luis, a passionate software developer currently working at UC Berkeley. My journey in technology has been driven by a deep interest in on-chain security and the potential of blockchain technology to bring economic freedom to people worldwide.
-            </p>
-            <p>
-                I specialize in developing secure and scalable applications, with a particular focus on blockchain technology and decentralized systems. My work combines technical expertise with a strong understanding of security principles to create robust solutions.
-            </p>
-            <p>
-                When I'm not coding, I'm constantly exploring new technologies and contributing to open-source projects. I believe in the power of technology to create positive change and am always excited to take on new challenges.
-            </p>
+    <section class="section" data-aos="fade-up">
+        <img src="placeholder-profile.jpg" alt="Luis Perez" class="profile-image">
+        <h2>Hello, I'm Luis! 👋</h2>
+        <p>Born in the Philippines and now calling Sacramento home, I'm a passionate software developer and creative soul currently studying at UC Berkeley (Class of 2025). I combine my technical expertise with a love for music, adventure, and building meaningful solutions that make a difference in people's lives.</p>
+        
+        <div class="grid-container">
+            <div class="card" data-aos="fade-up">
+                <h3>🎓 Education</h3>
+                <p>UC Berkeley<br>Computer Science<br>Expected Graduation: December 2025</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3>🎵 Music</h3>
+                <p>Proud member of the Cal NUJ Jazz Ensemble<br>Piano enthusiast with a passion for improvisation</p>
+            </div>
         </div>
-    </div>
+    </section>
 
+    <section class="section section-alt" data-aos="fade-up">
+        <h2>My Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-left">
+                <h3>Born in the Philippines</h3>
+                <p>My journey began in the Philippines, where my early experiences shaped my perspective on technology's potential to connect and empower people.</p>
+            </div>
+            <div class="timeline-item" data-aos="fade-left" data-aos-delay="100">
+                <h3>Moving to Sacramento</h3>
+                <p>Relocating to Sacramento opened up new opportunities and exposed me to diverse perspectives in technology and culture.</p>
+            </div>
+            <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
+                <h3>UC Berkeley</h3>
+                <p>Currently pursuing my passion for computer science at one of the world's leading institutions, where I'm constantly challenged and inspired.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" data-aos="fade-up">
+        <h2>What I Love</h2>
+        <div class="grid-container">
+            <div class="card" data-aos="fade-up">
+                <h3>🏃‍♂️ Adventure Seeker</h3>
+                <p>An avid hiker and traveler, I believe in collecting experiences and stories. From local trails to international destinations, I'm always ready for the next adventure.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3>💻 Tech Builder</h3>
+                <p>I'm passionate about building solutions that help people. My focus is on creating accessible, secure, and impactful applications that solve real-world problems.</p>
+            </div>
+    </section>
+
+    <section class="section section-alt" data-aos="fade-up">
+        <h2>Skills & Interests</h2>
+        <div class="skills-container">
+            <span class="skill-tag">Software Development</span>
+            <span class="skill-tag">Web Security</span>
+            <span class="skill-tag">Blockchain</span>
+            <span class="skill-tag">Piano</span>
+            <span class="skill-tag">Jazz</span>
+            <span class="skill-tag">Hiking</span>
+            <span class="skill-tag">Travel Photography</span>
+            <span class="skill-tag">Problem Solving</span>
+        </div>
+    </section>
+
+    <section class="section" data-aos="fade-up">
+        <h2>Adventure Gallery</h2>
+        <div class="gallery">
+            <div class="gallery-item" data-aos="zoom-in">
+                <img src="placeholder-hiking.jpg" alt="Hiking Adventure">
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                <img src="placeholder-piano.jpg" alt="Piano Performance">
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                <img src="placeholder-travel.jpg" alt="Travel Memory">
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                <img src="placeholder-coding.jpg" alt="Coding Session">
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Dark mode toggle
         const darkModeToggle = document.getElementById('darkModeToggle');
         const documentBody = document.body;
       
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            documentBody.classList.add('dark-mode');
+        }
+
         darkModeToggle.addEventListener('click', () => {
             documentBody.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', 
+                documentBody.classList.contains('dark-mode') ? 'enabled' : 'disabled'
+            );
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
     </script>
 </body>
