@@ -59,6 +59,33 @@
             color: var(--text-color);
         }
 
+        .view-counter {
+            display: inline-flex;
+            align-items: center;
+            margin: 0.5rem auto;
+            padding: 0.25rem 0.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            box-shadow: 0 2px 8px var(--glass-shadow);
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .view-counter:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 12px var(--glass-shadow);
+        }
+
+        .view-counter img {
+            height: 18px;
+            width: auto;
+            border-radius: 3px;
+        }
+
         .blog-content {
             display: grid;
             grid-template-columns: 1fr;
@@ -266,8 +293,11 @@
 
         <div class="blog-header animate__animated animate__fadeIn">
             <h1>Why the Worst Crimes Are the Ones We Can't Count</h1>
-            <div class="date">March 20, 2024 | By Luis Sanchez</div>
+            <div class="date">June 13, 2025 | By Luis Sanchez</div>
             <p>Exploring the Hidden Scale of Mass Violence through Data Analysis</p>
+            <div class="view-counter">
+                <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fsuislanchez.com%2Fblog1.html&label=views%3A&icon=eye&color=%233d8bfd" alt="Views" />
+            </div>
         </div>
 
         <div class="blog-content">

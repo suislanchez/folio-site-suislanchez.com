@@ -32,6 +32,7 @@
         .blog-header {
             text-align: center;
             margin-bottom: 2rem;
+            position: relative;
         }
         
         .blog-header h1 {
@@ -237,6 +238,33 @@
             font-weight: 400;
             src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
         }
+
+        .view-counter {
+            display: inline-flex;
+            align-items: center;
+            margin: 0.5rem auto;
+            padding: 0.25rem 0.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            box-shadow: 0 2px 8px var(--glass-shadow);
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .view-counter:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 12px var(--glass-shadow);
+        }
+
+        .view-counter img {
+            height: 18px;
+            width: auto;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
@@ -264,9 +292,12 @@
 
         <div class="blog-header">
             <h1>Algorithmic Complacency in an Attention Economy</h1>
-            <div class="date">March 10, 2024</div>
+            <div class="date">Jun 8, 2025</div>
             <div class="author">By Luis Sanchez</div>
             <p>Your Attention: The Most Valuable Resource in the Information Age</p>
+            <div class="view-counter">
+                <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fsuislanchez.com%2Fblog2.html&label=views%3A&icon=eye&color=%233d8bfd" alt="Views" />
+            </div>
         </div>
 
         <div class="blog-content">

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Luis' Folio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://unpkg.com/motion@10.16.4/dist/motion.js"></script>
     <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css">
@@ -650,6 +651,37 @@
         .arrow {
             display: none !important;
         }
+
+        .footer-link:hover {
+            opacity: 0.7;
+        }
+
+        .view-counter {
+            display: inline-flex;
+            align-items: center;
+            margin: 0.5rem auto;
+            padding: 0.25rem 0.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            box-shadow: 0 2px 8px var(--glass-shadow);
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .view-counter:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 12px var(--glass-shadow);
+        }
+
+        .view-counter img {
+            height: 18px;
+            width: auto;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
@@ -1012,6 +1044,9 @@
                 <a href="https://github.com/suislanchez" class="footer-link">GitHub</a>
                 <a href="https://www.linkedin.com/in/suislanchez/" class="footer-link">LinkedIn</a>
                 <a href="mailto:luisanchez@berkeley.edu" class="footer-link">Contact</a>
+            </div>
+            <div class="view-counter">
+                <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fsuislanchez.com&label=views%3A&icon=eye&color=%233d8bfd" alt="Views" />
             </div>
         </div>
     </footer>
